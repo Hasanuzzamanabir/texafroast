@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:texafrost/features/schedule/view_models/schedule_view_model.dart';
+import 'package:texafrost/routes/app_routes.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../widgets/schedule_timeline_widget.dart';
 
@@ -58,12 +59,14 @@ class ScheduleScreen extends StatelessWidget {
                   ),
 
                   // Timeline Table Grid[cite: 10]
-                  ScheduleTimelineWidget(
-                    slots: scheduleProvider.slots,
-                    onJobTap: (slot) {
-                      // Job detail screen navigation
-                    },
-                  ),
+                ScheduleTimelineWidget(
+  slots: scheduleProvider.slots,
+  onJobTap: (slot) {
+    if (slot.hasJob) {
+      Navigator.pushNamed(context, AppRoutes.jobDetails);
+    }
+  },
+),
                   SizedBox(height: 16.h),
                 ],
               ),

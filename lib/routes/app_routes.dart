@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:texafrost/features/auth/views/screens/forget_password_screen.dart';
 import 'package:texafrost/features/auth/views/screens/login_screen.dart';
+import 'package:texafrost/features/customer/views/screens/customer_info_screen.dart';
 import 'package:texafrost/features/dashboard/views/screens/home_screen.dart';
+import 'package:texafrost/features/customer/views/screens/equipment_screen.dart';
+import 'package:texafrost/features/customer/views/screens/job_detail_screen.dart';
+import 'package:texafrost/features/customer/views/screens/service_history_screen.dart';
 import 'package:texafrost/features/onboarding/views/screens/onboarding_screen.dart';
 import 'package:texafrost/features/splash/splash_screen.dart';
 import 'package:texafrost/features/sync_queue/views/screens/sync_details_screen.dart';
@@ -27,6 +31,10 @@ class AppRoutes {
   static const String forgotPassword = '/forgot-password';
   static const String home = '/home';
   static const String syncDetails = '/sync-details';
+  static const String jobDetails = '/job-details';
+static const String customerInfo = '/customer-info';
+static const String equipment = '/equipment';
+static const String serviceHistory = '/service-history';
 
   // static const String pinAuth = '/pin-auth';
    static const String dashboard = '/dashboard';
@@ -68,6 +76,14 @@ class AppRoutes {
   return MaterialPageRoute(
     builder: (_) => const SyncDetailsScreen(),
   );
+  case jobDetails:
+  return MaterialPageRoute(builder: (_) => const JobDetailScreen());
+case customerInfo:
+  return MaterialPageRoute(builder: (_) => const CustomerInfoScreen());
+case equipment:
+  return MaterialPageRoute(builder: (_) => const EquipmentScreen());
+case serviceHistory:
+  return MaterialPageRoute(builder: (_) => const ServiceHistoryScreen());
 
       // case pinAuth:
       //   return MaterialPageRoute(
