@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:texafrost/core/constants/app_colors.dart';
 import 'package:texafrost/core/widgets/custom_app_bar_back.dart';
+import 'package:texafrost/features/jobs/view_models/job_tracking_view_model.dart';
 import 'package:texafrost/features/jobs/views/widgets/work_step_widget.dart';
 import 'package:texafrost/routes/app_routes.dart';
 
@@ -72,86 +74,110 @@ class TrackingProgressScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 14.h),
-                    LinearProgressIndicator(
-                      value: .4,
-                      borderRadius: .circular(12.r),
-                      color: AppColors.orangeEnd,
-                      minHeight: 6.h,
+                    Consumer<JobTrackingViewModel>(
+                      builder: (context, provider, child) =>
+                          LinearProgressIndicator(
+                            value: provider.completedStepsCount / 6,
+                            borderRadius: .circular(12.r),
+                            color: AppColors.orangeEnd,
+                            minHeight: 6.h,
+                          ),
                     ),
                     SizedBox(height: 10.h),
-                    Text(
-                      '1/6 steps completed',
-                      style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: .w500,
-                        color: AppColors.labelText,
+                    Consumer<JobTrackingViewModel>(
+                      builder: (context, provider, child) => Text(
+                        '${provider.completedStepsCount}/6 steps completed',
+                        style: TextStyle(
+                          fontSize: 12.sp,
+                          fontWeight: .w500,
+                          color: AppColors.labelText,
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
               SizedBox(height: 32.h),
-              Text(
-                'WORK STEPS',
-                style: TextStyle(
-                  fontSize: 11.sp,
-                  fontWeight: .w700,
-                  color: AppColors.labelText,
+              Consumer<JobTrackingViewModel>(
+                builder: (context, provider, child) => Column(
+                  crossAxisAlignment: .start,
+                  children: [
+                    Text(
+                      'WORK STEPS',
+                      style: TextStyle(
+                        fontSize: 11.sp,
+                        fontWeight: .w700,
+                        color: AppColors.labelText,
+                      ),
+                    ),
+                    SizedBox(height: 8.h),
+                    WorkStepWidget(
+                      isCompleted: provider.completedSteps[0],
+                      description: '16-point service checklist',
+                      icon: Icons.check,
+                      title: 'Checklist',
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.checklist);
+                      },
+                    ),
+                    SizedBox(height: 8.h),
+                    WorkStepWidget(
+                      isCompleted: provider.completedSteps[1],
+                      description: 'Readings, findings & actions',
+                      icon: Icons.query_stats,
+                      title: 'Diagnostic Findings',
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.diagnostic);
+                      },
+                    ),
+                    SizedBox(height: 8.h),
+                    WorkStepWidget(
+                      isCompleted: provider.completedSteps[2],
+                      description: 'Technician & customer notes',
+                      icon: Icons.edit_note,
+                      title: 'Notes',
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.notes);
+                      },
+                    ),
+                    SizedBox(height: 8.h),
+                    WorkStepWidget(
+                      isCompleted: provider.completedSteps[3],
+                      description: 'Before, after & evidence',
+                      icon: Icons.photo_camera_outlined,
+                      title: 'Photo / Videos',
+                      onTap: () {
+                        Navigator.pushNamed(context, AppRoutes.photoAndVideo);
+                      },
+                    ),
+                    SizedBox(height: 8.h),
+                    WorkStepWidget(
+                      isCompleted: provider.completedSteps[4],
+                      description: 'Parts used & quantities',
+                      icon: Icons.settings,
+                      title: 'Parts & Materials',
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.partsAndMaterials,
+                        );
+                      },
+                    ),
+                    SizedBox(height: 8.h),
+                    WorkStepWidget(
+                      isCompleted: provider.completedSteps[5],
+                      description: 'Sign-off & authorization',
+                      icon: Icons.draw,
+                      title: 'Customer Signature',
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.customerSignature,
+                        );
+                      },
+                    ),
+                  ],
                 ),
-              ),
-              SizedBox(height: 8.h),
-              WorkStepWidget(
-                description: '16-point service checklist',
-                icon: Icons.check,
-                title: 'Checklist',
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.checklist);
-                },
-              ),
-              SizedBox(height: 8.h),
-              WorkStepWidget(
-                description: 'Readings, findings & actions',
-                icon: Icons.query_stats,
-                title: 'Diagnostic Findings',
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.diagnostic);
-                },
-              ),
-              SizedBox(height: 8.h),
-              WorkStepWidget(
-                description: 'Technician & customer notes',
-                icon: Icons.edit_note,
-                title: 'Notes',
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.notes);
-                },
-              ),
-              SizedBox(height: 8.h),
-              WorkStepWidget(
-                description: 'Before, after & evidence',
-                icon: Icons.photo_camera_outlined,
-                title: 'Photo / Videos',
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.photoAndVideo);
-                },
-              ),
-              SizedBox(height: 8.h),
-              WorkStepWidget(
-                description: 'Parts used & quantities',
-                icon: Icons.settings,
-                title: 'Parts & Materials',
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.partsAndMaterials);
-                },
-              ),
-              SizedBox(height: 8.h),
-              WorkStepWidget(
-                description: 'Sign-off & authorization',
-                icon: Icons.draw,
-                title: 'Customer Signature',
-                onTap: () {
-                  Navigator.pushNamed(context, AppRoutes.customerSignature);
-                },
               ),
               SizedBox(height: 50.h),
             ],

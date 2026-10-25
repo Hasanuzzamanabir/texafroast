@@ -22,7 +22,7 @@ class WorkStepWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: isCompleted ? null : onTap,
       child: Container(
         width: .maxFinite,
         padding: EdgeInsets.all(12.w),

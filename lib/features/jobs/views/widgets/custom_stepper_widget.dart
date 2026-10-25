@@ -4,14 +4,17 @@ import 'package:texafrost/core/constants/app_colors.dart';
 import 'package:texafrost/features/jobs/models/step_model.dart';
 
 class CustomStepper extends StatelessWidget {
-  final List<StepItem> steps;
   final int currentStep;
-
-  const CustomStepper({
-    super.key,
-    required this.steps,
-    required this.currentStep,
-  });
+  final steps = [
+    StepItem('Check'),
+    StepItem('Diag'),
+    StepItem('Notes'),
+    StepItem('Photos'),
+    StepItem('Parts'),
+    StepItem('Sign'),
+    StepItem('Report'),
+  ];
+  CustomStepper({super.key, required this.currentStep});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +85,7 @@ class _StepWidget extends StatelessWidget {
             color: isCompleted
                 ? AppColors.greenStart
                 : isCurrent
-                ? Colors.orange
+                ? AppColors.orangeStart
                 : Colors.grey,
           ),
         ),
@@ -100,7 +103,7 @@ class _StepWidget extends StatelessWidget {
     if (isCompleted) {
       color = Colors.green;
     } else if (isCurrent) {
-      color = Colors.orange;
+      color = AppColors.orangeStart;
     } else {
       color = const Color(0xFF23242D);
     }
