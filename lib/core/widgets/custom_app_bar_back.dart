@@ -11,42 +11,47 @@ class CustomAppBarBack extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
-        child: Row(
-          children: [
-            GestureDetector(
-              onTap: onBack ?? () => Navigator.pop(context),
-              child: Container(
-                width: 38.w,
-                height: 38.h,
-                decoration: BoxDecoration(
-                  color: const Color(0xFF1E2129),
-                  borderRadius: BorderRadius.circular(10.r),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+            child: Row(
+              children: [
+                GestureDetector(
+                  onTap: onBack ?? () => Navigator.pop(context),
+                  child: Container(
+                    width: 38.w,
+                    height: 38.h,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1E2129),
+                      borderRadius: BorderRadius.circular(10.r),
+                    ),
+                    child: Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      color: AppColors.textPrimary,
+                      size: 16.sp,
+                    ),
+                  ),
                 ),
-                child: Icon(
-                  Icons.arrow_back_ios_new_rounded,
-                  color: AppColors.textPrimary,
-                  size: 16.sp,
+                SizedBox(width: 14.w),
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
-              ),
+              ],
             ),
-            SizedBox(width: 14.w),
-            Text(
-              title,
-              style: TextStyle(
-                color: AppColors.textPrimary,
-                fontSize: 20.sp,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
+          ),
+          Divider(color: AppColors.inputBorder, thickness: 1.w),
+        ],
       ),
     );
   }
 
   @override
   // TODO: implement preferredSize
-  Size get preferredSize => Size.fromHeight(kToolbarHeight + 24.h);
+  Size get preferredSize => Size.fromHeight(kToolbarHeight + 30.h);
 }

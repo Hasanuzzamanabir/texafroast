@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:texafrost/core/constants/app_colors.dart';
 import 'package:texafrost/core/widgets/custom_app_bar_back.dart';
 import 'package:texafrost/features/jobs/views/widgets/work_step_widget.dart';
+import 'package:texafrost/routes/app_routes.dart';
 
 class TrackingProgressScreen extends StatelessWidget {
   const TrackingProgressScreen({super.key});
@@ -17,7 +18,6 @@ class TrackingProgressScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: .start,
             children: [
-              Divider(thickness: 1, color: AppColors.inputBorder),
               SizedBox(height: 16.h),
               Container(
                 width: .maxFinite,
@@ -104,42 +104,54 @@ class TrackingProgressScreen extends StatelessWidget {
                 description: '16-point service checklist',
                 icon: Icons.check,
                 title: 'Checklist',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.checklist);
+                },
               ),
               SizedBox(height: 8.h),
               WorkStepWidget(
                 description: 'Readings, findings & actions',
                 icon: Icons.query_stats,
                 title: 'Diagnostic Findings',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.diagnostic);
+                },
               ),
               SizedBox(height: 8.h),
               WorkStepWidget(
                 description: 'Technician & customer notes',
                 icon: Icons.edit_note,
                 title: 'Notes',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.notes);
+                },
               ),
               SizedBox(height: 8.h),
               WorkStepWidget(
                 description: 'Before, after & evidence',
                 icon: Icons.photo_camera_outlined,
                 title: 'Photo / Videos',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.photoAndVideo);
+                },
               ),
               SizedBox(height: 8.h),
               WorkStepWidget(
                 description: 'Parts used & quantities',
                 icon: Icons.settings,
                 title: 'Parts & Materials',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.partsAndMaterials);
+                },
               ),
               SizedBox(height: 8.h),
               WorkStepWidget(
                 description: 'Sign-off & authorization',
                 icon: Icons.draw,
                 title: 'Customer Signature',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.customerSignature);
+                },
               ),
               SizedBox(height: 50.h),
             ],

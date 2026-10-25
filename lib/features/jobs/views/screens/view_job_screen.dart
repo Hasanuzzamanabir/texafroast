@@ -18,7 +18,6 @@ class ViewJobScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 17.0.w),
           child: Column(
             children: [
-              Divider(color: AppColors.inputBorder, thickness: 1.w),
               SizedBox(height: 17.h),
               Container(
                 width: .maxFinite,

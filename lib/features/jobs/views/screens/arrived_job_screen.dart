@@ -28,7 +28,6 @@ class _ArrivedJobScreenState extends State<ArrivedJobScreen> {
         child: Column(
           crossAxisAlignment: .start,
           children: [
-            Divider(color: AppColors.inputBorder),
             SizedBox(height: 16.h),
             Container(
               padding: EdgeInsets.all(20.r),

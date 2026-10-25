@@ -8,6 +8,12 @@ import 'package:texafrost/features/customer/views/screens/job_detail_screen.dart
 import 'package:texafrost/features/customer/views/screens/service_history_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/arrived_job_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/tracking_progress_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/checklist_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/customer_signature_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/diagnostic_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/notes_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/part_material_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/photo_video_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/view_job_screen.dart';
 import 'package:texafrost/features/onboarding/views/screens/onboarding_screen.dart';
 import 'package:texafrost/features/splash/splash_screen.dart';
@@ -49,6 +55,12 @@ class AppRoutes {
   static const String viewJob = '/view-job';
   static const String arrivedJob = '/arrived-job';
   static const String trackingProgress = '/tracking-progress';
+  static const String checklist = '/checklist';
+  static const String diagnostic = '/diagnostic';
+  static const String notes = '/notes';
+  static const String partsAndMaterials = '/parts-and-materials';
+  static const String photoAndVideo = '/photo-and-video';
+  static const String customerSignature = '/customer-signature';
 
   // Route Generator
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -83,6 +95,20 @@ class AppRoutes {
       case trackingProgress:
         return MaterialPageRoute(
           builder: (_) => const TrackingProgressScreen(),
+        );
+      case checklist:
+        return MaterialPageRoute(builder: (_) => ChecklistScreen());
+      case diagnostic:
+        return MaterialPageRoute(builder: (_) => const DiagnosticScreen());
+      case notes:
+        return MaterialPageRoute(builder: (_) => const NotesScreen());
+      case partsAndMaterials:
+        return MaterialPageRoute(builder: (_) => const PartMaterialScreen());
+      case photoAndVideo:
+        return MaterialPageRoute(builder: (_) => const PhotoVideoScreen());
+      case customerSignature:
+        return MaterialPageRoute(
+          builder: (_) => const CustomerSignatureScreen(),
         );
       // case pinAuth:
       //   return MaterialPageRoute(
