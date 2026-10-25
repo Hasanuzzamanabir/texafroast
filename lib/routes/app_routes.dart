@@ -7,6 +7,7 @@ import 'package:texafrost/features/customer/views/screens/equipment_screen.dart'
 import 'package:texafrost/features/customer/views/screens/job_detail_screen.dart';
 import 'package:texafrost/features/customer/views/screens/service_history_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/arrived_job_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/tracking_progress_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/view_job_screen.dart';
 import 'package:texafrost/features/onboarding/views/screens/onboarding_screen.dart';
 import 'package:texafrost/features/splash/splash_screen.dart';
@@ -43,11 +44,11 @@ class AppRoutes {
   // static const String schedule = '/schedule';
   // static const String customerInfo = '/customer-info';
   // static const String jobDetails = '/job-details';
-  // static const String trackingProgress = '/tracking-progress';
   // static const String offlineQueue = '/offline-queue';
   // static const String profile = '/profile';
   static const String viewJob = '/view-job';
   static const String arrivedJob = '/arrived-job';
+  static const String trackingProgress = '/tracking-progress';
 
   // Route Generator
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -79,6 +80,10 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const ViewJobScreen());
       case arrivedJob:
         return MaterialPageRoute(builder: (_) => const ArrivedJobScreen());
+      case trackingProgress:
+        return MaterialPageRoute(
+          builder: (_) => const TrackingProgressScreen(),
+        );
       // case pinAuth:
       //   return MaterialPageRoute(
       //     builder: (_) => const PinScreen(),
@@ -97,11 +102,6 @@ class AppRoutes {
       // case jobDetails:
       //   return MaterialPageRoute(
       //     builder: (_) => const JobDetailScreen(),
-      //   );
-
-      // case trackingProgress:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const TrackingProgressScreen(),
       //   );
 
       // case offlineQueue:

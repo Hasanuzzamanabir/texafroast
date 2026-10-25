@@ -4,6 +4,7 @@ import 'package:texafrost/core/constants/app_colors.dart';
 import 'package:texafrost/core/widgets/custom_app_bar_back.dart';
 import 'package:texafrost/core/widgets/custom_button.dart';
 import 'package:texafrost/features/jobs/views/widgets/checkbox_widget.dart';
+import 'package:texafrost/routes/app_routes.dart';
 
 class ArrivedJobScreen extends StatefulWidget {
   const ArrivedJobScreen({super.key});
@@ -138,7 +139,11 @@ class _ArrivedJobScreenState extends State<ArrivedJobScreen> {
             SizedBox(height: 16.h),
             CustomButtonWidget(
               title: 'Begin Service Work',
-              onTap: (_chk1 && _chk2 && _chk3 && _chk4) ? () {} : null,
+              onTap: (_chk1 && _chk2 && _chk3 && _chk4)
+                  ? () {
+                      Navigator.pushNamed(context, AppRoutes.trackingProgress);
+                    }
+                  : null,
             ),
             SizedBox(height: 16.h),
             Center(
