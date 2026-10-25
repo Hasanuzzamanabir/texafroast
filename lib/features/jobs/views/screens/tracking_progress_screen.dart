@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:texafrost/core/constants/app_colors.dart';
 import 'package:texafrost/core/widgets/custom_app_bar_back.dart';
+import 'package:texafrost/features/jobs/views/widgets/work_step_widget.dart';
 
 class TrackingProgressScreen extends StatelessWidget {
   const TrackingProgressScreen({super.key});
@@ -144,83 +145,6 @@ class TrackingProgressScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class WorkStepWidget extends StatelessWidget {
-  VoidCallback? onTap;
-  final String? title;
-  final String? description;
-  final IconData? icon;
-  final bool isCompleted;
-  final Color? iconColor;
-  WorkStepWidget({
-    super.key,
-    required this.onTap,
-    required this.title,
-    required this.description,
-    required this.icon,
-    this.isCompleted = false,
-    this.iconColor = AppColors.textPrimary,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: .maxFinite,
-      padding: EdgeInsets.all(12.w),
-      decoration: BoxDecoration(
-        color: AppColors.inputBackground,
-        borderRadius: .circular(12.r),
-        border: .all(color: AppColors.inputBorder),
-      ),
-      child: Row(
-        spacing: 10.w,
-        children: [
-          Container(
-            height: 36.h,
-            width: 36.h,
-            padding: .all(8),
-            decoration: BoxDecoration(
-              color: isCompleted ? AppColors.greenEnd : Colors.transparent,
-              shape: BoxShape.rectangle,
-              borderRadius: .circular(10.r),
-              border: .all(color: AppColors.inputBorder),
-            ),
-            child: Icon(
-              isCompleted ? Icons.check : icon,
-              color: isCompleted ? Colors.white : iconColor,
-            ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: .start,
-              children: [
-                Text(
-                  title ?? '',
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: .w700,
-                    color: Colors.white,
-                  ),
-                ),
-                Text(
-                  description ?? '',
-                  style: TextStyle(
-                    fontSize: 11.sp,
-                    fontWeight: .w400,
-                    color: AppColors.labelText,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          isCompleted
-              ? Icon(Icons.check_circle_outline, color: AppColors.greenEnd)
-              : Icon(Icons.keyboard_arrow_right_sharp, color: Colors.white),
-        ],
       ),
     );
   }
