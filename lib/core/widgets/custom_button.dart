@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:texafrost/core/constants/app_colors.dart';
+
 enum ButtonType { orange, blue, green }
 
 class CustomButtonWidget extends StatelessWidget {
@@ -22,6 +23,9 @@ class CustomButtonWidget extends StatelessWidget {
   final double borderRadius;
 
   LinearGradient _getGradient() {
+    if (onTap == null || isLoading) {
+      return AppColors.orangeGradient.withOpacity(0.5);
+    }
     switch (type) {
       case ButtonType.blue:
         return AppColors.blueGradient;

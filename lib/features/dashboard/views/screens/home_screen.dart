@@ -6,6 +6,7 @@ import 'package:texafrost/features/dashboard/views/widgets/job_card_widget.dart'
 import 'package:texafrost/features/profile/views/screens/profile_screen.dart';
 import 'package:texafrost/features/schedule/views/screens/schedule_screen.dart';
 import 'package:texafrost/features/sync_queue/views/screens/offline_queue_screen.dart';
+import 'package:texafrost/routes/app_routes.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/imagepath.dart';
 import '../../../../core/widgets/custom_bottom_nav_bar.dart';
@@ -18,18 +19,15 @@ class HomeScreen extends StatelessWidget {
     final provider = context.watch<DashboardProvider>();
 
     final List<Widget> pages = [
-      const _JobsView(),                 
-      const ScheduleScreen(),  
-      const OfflineQueueContentView(),                               
-     const ProfileScreen(),                                
+      const _JobsView(),
+      const ScheduleScreen(),
+      const OfflineQueueContentView(),
+      const ProfileScreen(),
     ];
 
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: IndexedStack(
-        index: provider.currentIndex,
-        children: pages,
-      ),
+      body: IndexedStack(index: provider.currentIndex, children: pages),
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: provider.currentIndex,
         jobsBadgeCount: provider.unreadJobsCount,
@@ -102,20 +100,20 @@ class _JobsView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    SizedBox(width: 10.w),
-                    Container(
-                      width: 38.w,
-                      height: 38.h,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.orangeStart,
-                      ),
-                      child: Icon(
-                        Icons.person,
-                        color: Colors.white,
-                        size: 24.sp,
-                      ),
-                    ),
+                    // SizedBox(width: 10.w),
+                    // Container(
+                    //   width: 38.w,
+                    //   height: 38.h,
+                    //   decoration: const BoxDecoration(
+                    //     shape: BoxShape.circle,
+                    //     color: AppColors.orangeStart,
+                    //   ),
+                    //   child: Icon(
+                    //     Icons.person,
+                    //     color: Colors.white,
+                    //     size: 24.sp,
+                    //   ),
+                    // ),
                   ],
                 ),
               ],
@@ -188,47 +186,44 @@ class _JobsView extends StatelessWidget {
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
                     child: Row(
-                      children: List.generate(
-                        provider.filters.length,
-                        (index) {
-                          final isSelected =
-                              provider.selectedFilterIndex == index;
-                          return GestureDetector(
-                            onTap: () => provider.selectFilter(index),
-                            child: Container(
-                              margin: EdgeInsets.only(right: 10.w),
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 18.w,
-                                vertical: 10.h,
-                              ),
-                              decoration: BoxDecoration(
+                      children: List.generate(provider.filters.length, (index) {
+                        final isSelected =
+                            provider.selectedFilterIndex == index;
+                        return GestureDetector(
+                          onTap: () => provider.selectFilter(index),
+                          child: Container(
+                            margin: EdgeInsets.only(right: 10.w),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 18.w,
+                              vertical: 10.h,
+                            ),
+                            decoration: BoxDecoration(
+                              color: isSelected
+                                  ? AppColors.orangeStart
+                                  : const Color(0xFF1E2129),
+                              borderRadius: BorderRadius.circular(24.r),
+                              border: isSelected
+                                  ? null
+                                  : Border.all(
+                                      color: Colors.white.withOpacity(0.06),
+                                      width: 1,
+                                    ),
+                            ),
+                            child: Text(
+                              provider.filters[index],
+                              style: TextStyle(
                                 color: isSelected
-                                    ? AppColors.orangeStart
-                                    : const Color(0xFF1E2129),
-                                borderRadius: BorderRadius.circular(24.r),
-                                border: isSelected
-                                    ? null
-                                    : Border.all(
-                                        color: Colors.white.withOpacity(0.06),
-                                        width: 1,
-                                      ),
-                              ),
-                              child: Text(
-                                provider.filters[index],
-                                style: TextStyle(
-                                  color: isSelected
-                                      ? Colors.white
-                                      : AppColors.textSecondary,
-                                  fontSize: 13.sp,
-                                  fontWeight: isSelected
-                                      ? FontWeight.w700
-                                      : FontWeight.w500,
-                                ),
+                                    ? Colors.white
+                                    : AppColors.textSecondary,
+                                fontSize: 13.sp,
+                                fontWeight: isSelected
+                                    ? FontWeight.w700
+                                    : FontWeight.w500,
                               ),
                             ),
-                          );
-                        },
-                      ),
+                          ),
+                        );
+                      }),
                     ),
                   ),
                   SizedBox(height: 20.h),
@@ -237,7 +232,13 @@ class _JobsView extends StatelessWidget {
                   ...provider.jobs.map(
                     (job) => JobCardWidget(
                       job: job,
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.viewJob,
+                          arguments: job.id,
+                        );
+                      },
                     ),
                   ),
                   SizedBox(height: 16.h),

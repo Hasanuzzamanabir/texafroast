@@ -6,6 +6,8 @@ import 'package:texafrost/features/dashboard/views/screens/home_screen.dart';
 import 'package:texafrost/features/customer/views/screens/equipment_screen.dart';
 import 'package:texafrost/features/customer/views/screens/job_detail_screen.dart';
 import 'package:texafrost/features/customer/views/screens/service_history_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/arrived_job_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/view_job_screen.dart';
 import 'package:texafrost/features/onboarding/views/screens/onboarding_screen.dart';
 import 'package:texafrost/features/splash/splash_screen.dart';
 import 'package:texafrost/features/sync_queue/views/screens/sync_details_screen.dart';
@@ -32,68 +34,55 @@ class AppRoutes {
   static const String home = '/home';
   static const String syncDetails = '/sync-details';
   static const String jobDetails = '/job-details';
-static const String customerInfo = '/customer-info';
-static const String equipment = '/equipment';
-static const String serviceHistory = '/service-history';
+  static const String customerInfo = '/customer-info';
+  static const String equipment = '/equipment';
+  static const String serviceHistory = '/service-history';
 
   // static const String pinAuth = '/pin-auth';
-   static const String dashboard = '/dashboard';
+  static const String dashboard = '/dashboard';
   // static const String schedule = '/schedule';
   // static const String customerInfo = '/customer-info';
   // static const String jobDetails = '/job-details';
   // static const String trackingProgress = '/tracking-progress';
   // static const String offlineQueue = '/offline-queue';
   // static const String profile = '/profile';
+  static const String viewJob = '/view-job';
+  static const String arrivedJob = '/arrived-job';
 
   // Route Generator
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
       case initial:
-  
       case splash:
-        return MaterialPageRoute(
-          builder: (_) => const SplashScreen(),
-        );
-        case onboarding:
-        return MaterialPageRoute(
-          builder: (_) => const OnboardingScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
+      case onboarding:
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
 
       case login:
-        return MaterialPageRoute(
-          builder: (_) => const LoginScreen(),
-        );
-        case forgotPassword:
-        return MaterialPageRoute(
-          builder: (_) => const ForgotPasswordScreen(),
-        );
-    case dashboard:
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case forgotPassword:
+        return MaterialPageRoute(builder: (_) => const ForgotPasswordScreen());
+      case dashboard:
       case home:
-        return MaterialPageRoute(
-          builder: (_) => const HomeScreen(),
-        );
-        case syncDetails:
-  return MaterialPageRoute(
-    builder: (_) => const SyncDetailsScreen(),
-  );
-  case jobDetails:
-  return MaterialPageRoute(builder: (_) => const JobDetailScreen());
-case customerInfo:
-  return MaterialPageRoute(builder: (_) => const CustomerInfoScreen());
-case equipment:
-  return MaterialPageRoute(builder: (_) => const EquipmentScreen());
-case serviceHistory:
-  return MaterialPageRoute(builder: (_) => const ServiceHistoryScreen());
-
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
+      case syncDetails:
+        return MaterialPageRoute(builder: (_) => const SyncDetailsScreen());
+      case jobDetails:
+        return MaterialPageRoute(builder: (_) => const JobDetailScreen());
+      case customerInfo:
+        return MaterialPageRoute(builder: (_) => const CustomerInfoScreen());
+      case equipment:
+        return MaterialPageRoute(builder: (_) => const EquipmentScreen());
+      case serviceHistory:
+        return MaterialPageRoute(builder: (_) => const ServiceHistoryScreen());
+      case viewJob:
+        return MaterialPageRoute(builder: (_) => const ViewJobScreen());
+      case arrivedJob:
+        return MaterialPageRoute(builder: (_) => const ArrivedJobScreen());
       // case pinAuth:
       //   return MaterialPageRoute(
       //     builder: (_) => const PinScreen(),
       //   );
-
-      case home:
-        return MaterialPageRoute(
-          builder: (_) => const HomeScreen(),
-        );
 
       // case schedule:
       //   return MaterialPageRoute(
