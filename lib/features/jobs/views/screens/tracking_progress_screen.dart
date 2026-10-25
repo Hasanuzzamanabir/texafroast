@@ -116,9 +116,11 @@ class TrackingProgressScreen extends StatelessWidget {
                       description: '16-point service checklist',
                       icon: Icons.check,
                       title: 'Checklist',
-                      onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.checklist);
-                      },
+                      onTap: provider.eligibleStep == 0
+                          ? () {
+                              Navigator.pushNamed(context, AppRoutes.checklist);
+                            }
+                          : null,
                     ),
                     SizedBox(height: 8.h),
                     WorkStepWidget(
@@ -126,9 +128,14 @@ class TrackingProgressScreen extends StatelessWidget {
                       description: 'Readings, findings & actions',
                       icon: Icons.query_stats,
                       title: 'Diagnostic Findings',
-                      onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.diagnostic);
-                      },
+                      onTap: provider.eligibleStep == 1
+                          ? () {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoutes.diagnostic,
+                              );
+                            }
+                          : null,
                     ),
                     SizedBox(height: 8.h),
                     WorkStepWidget(
@@ -136,9 +143,11 @@ class TrackingProgressScreen extends StatelessWidget {
                       description: 'Technician & customer notes',
                       icon: Icons.edit_note,
                       title: 'Notes',
-                      onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.notes);
-                      },
+                      onTap: provider.eligibleStep == 2
+                          ? () {
+                              Navigator.pushNamed(context, AppRoutes.notes);
+                            }
+                          : null,
                     ),
                     SizedBox(height: 8.h),
                     WorkStepWidget(
@@ -146,9 +155,14 @@ class TrackingProgressScreen extends StatelessWidget {
                       description: 'Before, after & evidence',
                       icon: Icons.photo_camera_outlined,
                       title: 'Photo / Videos',
-                      onTap: () {
-                        Navigator.pushNamed(context, AppRoutes.photoAndVideo);
-                      },
+                      onTap: provider.eligibleStep == 3
+                          ? () {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoutes.photoAndVideo,
+                              );
+                            }
+                          : null,
                     ),
                     SizedBox(height: 8.h),
                     WorkStepWidget(
@@ -156,12 +170,14 @@ class TrackingProgressScreen extends StatelessWidget {
                       description: 'Parts used & quantities',
                       icon: Icons.settings,
                       title: 'Parts & Materials',
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          AppRoutes.partsAndMaterials,
-                        );
-                      },
+                      onTap: provider.eligibleStep == 4
+                          ? () {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoutes.partsAndMaterials,
+                              );
+                            }
+                          : null,
                     ),
                     SizedBox(height: 8.h),
                     WorkStepWidget(
@@ -169,12 +185,14 @@ class TrackingProgressScreen extends StatelessWidget {
                       description: 'Sign-off & authorization',
                       icon: Icons.draw,
                       title: 'Customer Signature',
-                      onTap: () {
-                        Navigator.pushNamed(
-                          context,
-                          AppRoutes.customerSignature,
-                        );
-                      },
+                      onTap: provider.eligibleStep == 5
+                          ? () {
+                              Navigator.pushNamed(
+                                context,
+                                AppRoutes.customerSignature,
+                              );
+                            }
+                          : null,
                     ),
                   ],
                 ),

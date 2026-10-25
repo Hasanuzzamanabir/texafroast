@@ -23,60 +23,88 @@ class WorkStepWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: isCompleted ? null : onTap,
-      child: Container(
-        width: .maxFinite,
-        padding: EdgeInsets.all(12.w),
-        decoration: BoxDecoration(
-          color: AppColors.inputBackground,
-          borderRadius: .circular(12.r),
-          border: .all(color: AppColors.inputBorder),
-        ),
-        child: Row(
-          spacing: 10.w,
-          children: [
-            Container(
-              height: 36.h,
-              width: 36.h,
-              padding: .all(8),
-              decoration: BoxDecoration(
-                color: isCompleted ? AppColors.greenEnd : Colors.transparent,
-                shape: BoxShape.rectangle,
-                borderRadius: .circular(10.r),
-                border: .all(color: AppColors.inputBorder),
-              ),
-              child: Icon(
-                isCompleted ? Icons.check : icon,
-                color: isCompleted ? Colors.white : iconColor,
-              ),
+      child: Stack(
+        children: [
+          Container(
+            width: .maxFinite,
+            padding: EdgeInsets.all(12.w),
+            decoration: BoxDecoration(
+              color: AppColors.inputBackground,
+              borderRadius: .circular(12.r),
+              border: .all(color: AppColors.inputBorder),
             ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: .start,
-                children: [
-                  Text(
-                    title ?? '',
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: .w700,
-                      color: Colors.white,
-                    ),
+            child: Row(
+              spacing: 10.w,
+              children: [
+                Container(
+                  height: 36.h,
+                  width: 36.h,
+                  padding: .all(8),
+                  decoration: BoxDecoration(
+                    color: isCompleted
+                        ? AppColors.greenEnd
+                        : Colors.transparent,
+                    shape: BoxShape.rectangle,
+                    borderRadius: .circular(10.r),
+                    border: .all(color: AppColors.inputBorder),
                   ),
-                  Text(
-                    description ?? '',
-                    style: TextStyle(
-                      fontSize: 11.sp,
-                      fontWeight: .w400,
-                      color: AppColors.labelText,
-                    ),
+                  child: Icon(
+                    isCompleted ? Icons.check : icon,
+                    color: isCompleted
+                        ? Colors.white
+                        : onTap == null
+                        ? Colors.white38
+                        : iconColor,
                   ),
-                ],
-              ),
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: .start,
+                    children: [
+                      Text(
+                        title ?? '',
+                        style: TextStyle(
+                          fontSize: 14.sp,
+                          fontWeight: .w700,
+                          color: isCompleted
+                              ? Colors.white
+                              : onTap == null
+                              ? Colors.white24
+                              : Colors.white,
+                        ),
+                      ),
+                      Text(
+                        description ?? '',
+                        style: TextStyle(
+                          fontSize: 11.sp,
+                          fontWeight: .w400,
+                          color: isCompleted
+                              ? AppColors.labelText
+                              : onTap == null
+                              ? Colors.white24
+                              : AppColors.labelText,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                isCompleted
+                    ? Icon(
+                        Icons.check_circle_outline,
+                        color: AppColors.greenEnd,
+                      )
+                    : Icon(
+                        Icons.keyboard_arrow_right_sharp,
+                        color: isCompleted
+                            ? Colors.white
+                            : onTap == null
+                            ? Colors.white24
+                            : Colors.white,
+                      ),
+              ],
             ),
-            isCompleted
-                ? Icon(Icons.check_circle_outline, color: AppColors.greenEnd)
-                : Icon(Icons.keyboard_arrow_right_sharp, color: Colors.white),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
