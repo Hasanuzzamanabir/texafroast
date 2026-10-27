@@ -11,6 +11,8 @@ import 'package:texafrost/features/jobs/views/screens/tracking_progress_screen.d
 import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/checklist_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/customer_signature_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/diagnostic_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/job_complete_page_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/job_report_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/notes_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/part_material_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/photo_video_screen.dart';
@@ -67,6 +69,8 @@ class AppRoutes {
   static const String customers = '/customers';
   static const String messages = '/messages';
   static const String profile = '/profile';
+  static const String jobReport = '/job-report';
+  static const String jobComplete = '/job-complete';
 
   // Route Generator
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -117,18 +121,15 @@ class AppRoutes {
           builder: (_) => const CustomerSignatureScreen(),
         );
       case customers:
-        return MaterialPageRoute(
-          builder: (_) => const CustomerListScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const CustomerListScreen());
       case messages:
-        return MaterialPageRoute(
-          builder: (_) => const MessagesScreen(),
-        );
+        return MaterialPageRoute(builder: (_) => const MessagesScreen());
       case profile:
-        return MaterialPageRoute(
-          builder: (_) => const ProfileScreen(),
-        );
-
+        return MaterialPageRoute(builder: (_) => const ProfileScreen());
+      case jobReport:
+        return MaterialPageRoute(builder: (_) => const JobReportScreen());
+      case jobComplete:
+        return MaterialPageRoute(builder: (_) => const JobCompletePageScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

@@ -248,7 +248,9 @@ class TrackingProgressScreen extends StatelessWidget {
                       CustomButtonWidget(
                         title: 'Generate Service Report',
                         type: ButtonType.orange,
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, AppRoutes.jobReport);
+                        },
                       ),
                   ],
                 ),
