@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:texafrost/features/jobs/view_models/job_tracking_view_model.dart';
-import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/customer_signature_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/tracking_progress_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/job_complete_page_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/part_material_screen.dart';
 
@@ -70,5 +70,31 @@ void main() {
     expect(find.text('Signature'), findsOneWidget);
     expect(find.text('View Service Report'), findsOneWidget);
     expect(find.text('Back to Jobs'), findsOneWidget);
+  });
+
+  testWidgets('TrackingProgressScreen intercepts pop and shows clock out dialog',
+      (WidgetTester tester) async {
+    final viewModel = JobTrackingViewModel();
+    await tester.pumpWidget(createScreen(const TrackingProgressScreen(), viewModel));
+    await tester.pumpAndSettle();
+
+    expect(find.text('In Progress'), findsOneWidget);
+    expect(find.text('ACTIVE TIMER'), findsOneWidget);
+
+    // Tap the Clock out button
+    await tester.tap(find.text('Clock out'));
+    await tester.pumpAndSettle();
+
+    // Verify confirmation dialog appears
+    expect(find.text('Clock Out & Leave?'), findsOneWidget);
+    expect(find.text('Stay on Job'), findsOneWidget);
+    expect(find.text('Clock Out & Leave'), findsOneWidget);
+
+    // Tap Stay on Job -> dialog closes, user remains on screen
+    await tester.tap(find.text('Stay on Job'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Clock Out & Leave?'), findsNothing);
+    expect(find.text('In Progress'), findsOneWidget);
   });
 }

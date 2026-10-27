@@ -11,17 +11,95 @@ import 'package:texafrost/routes/app_routes.dart';
 class TrackingProgressScreen extends StatelessWidget {
   const TrackingProgressScreen({super.key});
 
+  Future<void> _showClockOutConfirmDialog(BuildContext context) async {
+    final bool? shouldLeave = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        backgroundColor: AppColors.surface,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r),
+        ),
+        title: Row(
+          children: [
+            Icon(
+              Icons.warning_amber_rounded,
+              color: AppColors.orangeStart,
+              size: 24.sp,
+            ),
+            SizedBox(width: 8.w),
+            Expanded(
+              child: Text(
+                'Clock Out & Leave?',
+                style: TextStyle(
+                  fontSize: 16.sp,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.textPrimary,
+                ),
+              ),
+            ),
+          ],
+        ),
+        content: Text(
+          'You are currently clocked in to this active job session. Leaving this screen will pause your active timer and clock you out.',
+          style: TextStyle(
+            fontSize: 13.sp,
+            color: AppColors.textSecondary,
+            height: 1.4,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(ctx, false),
+            child: Text(
+              'Stay on Job',
+              style: TextStyle(
+                color: AppColors.textSecondary,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.orangeStart,
+              foregroundColor: Colors.white,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8.r),
+              ),
+            ),
+            onPressed: () => Navigator.pop(ctx, true),
+            child: const Text('Clock Out & Leave'),
+          ),
+        ],
+      ),
+    );
+
+    if (shouldLeave == true && context.mounted) {
+      Navigator.pop(context);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBarBack(title: 'In Progress'),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 17.w),
-          child: Column(
-            crossAxisAlignment: .start,
-            children: [
-              SizedBox(height: 16.h),
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, _) {
+        if (!didPop) {
+          _showClockOutConfirmDialog(context);
+        }
+      },
+      child: Scaffold(
+        appBar: CustomAppBarBack(
+          title: 'In Progress',
+          onBack: () => _showClockOutConfirmDialog(context),
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 17.w),
+            child: Column(
+              crossAxisAlignment: .start,
+              children: [
+                SizedBox(height: 16.h),
               Container(
                 width: .maxFinite,
                 padding: EdgeInsets.all(20.r),
@@ -98,9 +176,7 @@ class TrackingProgressScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 12.h),
                     InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
+                      onTap: () => _showClockOutConfirmDialog(context),
                       child: Container(
                         padding: EdgeInsets.symmetric(
                           horizontal: 12.w,
@@ -260,6 +336,7 @@ class TrackingProgressScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }
