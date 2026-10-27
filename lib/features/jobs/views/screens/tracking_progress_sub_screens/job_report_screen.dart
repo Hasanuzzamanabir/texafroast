@@ -21,27 +21,23 @@ class JobReportScreen extends StatelessWidget {
               SizedBox(height: 24.h),
               CustomStepper(currentStep: 7),
               SizedBox(height: 15.h),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16.r),
-                child: Container(
-                  decoration: BoxDecoration(
-                    border: .all(color: AppColors.orangeStart, width: 1),
-                    color: AppColors.surface,
-                  ),
-                  child: Column(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 16.w,
-                          vertical: 16.h,
-                        ),
-                        decoration: BoxDecoration(
-                          color: AppColors.orangeStart,
-                          borderRadius: .only(
-                            topLeft: Radius.circular(16.r),
-                            topRight: Radius.circular(16.r),
-                          ),
-                        ),
+              Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.r),
+                  border: Border.all(color: AppColors.orangeStart, width: 1.5),
+                  color: AppColors.surface,
+                ),
+                child: Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.w,
+                        vertical: 16.h,
+                      ),
+                      decoration: const BoxDecoration(
+                        color: AppColors.orangeStart,
+                      ),
                         child: Column(
                           crossAxisAlignment: .start,
                           children: [
@@ -267,11 +263,11 @@ class JobReportScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SafeArea(child: SizedBox.shrink()),
+                      SafeArea(child: const SizedBox.shrink()),
                     ],
                   ),
                 ),
-              ),
+                SizedBox(height: 50.h),
             ],
           ),
         ),

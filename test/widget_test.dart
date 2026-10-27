@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:provider/provider.dart';
 import 'package:texafrost/features/jobs/view_models/job_tracking_view_model.dart';
 import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/customer_signature_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/job_complete_page_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/part_material_screen.dart';
 
 void main() {
@@ -50,22 +51,24 @@ void main() {
     expect(viewModel.completedSteps[4], isTrue);
   });
 
-  testWidgets('CustomerSignatureScreen clears and completes signature step',
+  testWidgets('JobCompletePageScreen renders celebration badge and completed steps',
       (WidgetTester tester) async {
     final viewModel = JobTrackingViewModel();
-    await tester.pumpWidget(createScreen(const CustomerSignatureScreen(), viewModel));
+    await tester.pumpWidget(createScreen(const JobCompletePageScreen(), viewModel));
     await tester.pumpAndSettle();
 
-    expect(find.text('Customer Signature'), findsOneWidget);
-    expect(find.text('Service Acknowledgment'), findsOneWidget);
-    expect(find.text('SIGNATURE'), findsOneWidget);
-
-    // Ensure button is visible, then tap
-    final completeButton = find.text('Complete & Save Signature');
-    await tester.ensureVisible(completeButton);
-    await tester.tap(completeButton);
-    await tester.pumpAndSettle();
-
-    expect(viewModel.completedSteps[5], isTrue);
+    expect(find.text('Job Complete!'), findsOneWidget);
+    expect(find.text('JOB-20240901-047'), findsOneWidget);
+    expect(find.text('Riverside Office Complex'), findsOneWidget);
+    expect(find.text('Checklist'), findsOneWidget);
+    expect(find.text('16-point completed'), findsOneWidget);
+    expect(find.text('Diagnostics'), findsOneWidget);
+    expect(find.text('Readings & findings'), findsOneWidget);
+    expect(find.text('Notes'), findsOneWidget);
+    expect(find.text('Photos'), findsOneWidget);
+    expect(find.text('Parts Used'), findsOneWidget);
+    expect(find.text('Signature'), findsOneWidget);
+    expect(find.text('View Service Report'), findsOneWidget);
+    expect(find.text('Back to Jobs'), findsOneWidget);
   });
 }
