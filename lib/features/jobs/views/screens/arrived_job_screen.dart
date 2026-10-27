@@ -60,7 +60,7 @@ class _ArrivedJobScreenState extends State<ArrivedJobScreen> {
                     style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: .w600,
-                      color: Colors.white,
+                      color: AppColors.textPrimary,
                     ),
                   ),
                   SizedBox(height: 4.h),

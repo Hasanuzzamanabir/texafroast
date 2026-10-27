@@ -31,10 +31,14 @@ class ViewJobScreen extends StatelessWidget {
                       width: .maxFinite,
                       height: 200.h,
                       decoration: BoxDecoration(
-                        color: const Color(0xFF1A1B21),
+                        color: AppColors.surfaceLight,
                         borderRadius: BorderRadius.circular(12.r),
                       ),
-                      child: Icon(Icons.map),
+                      child: Icon(
+                        Icons.map_outlined,
+                        color: AppColors.orangeStart,
+                        size: 40.sp,
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.all(14.0.w),
@@ -89,7 +93,7 @@ class ViewJobScreen extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 17.sp,
                         fontWeight: .w800,
-                        color: Colors.white,
+                        color: AppColors.textPrimary,
                       ),
                     ),
                     SizedBox(height: 4.h),
@@ -120,7 +124,10 @@ class ViewJobScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: .center,
                               children: [
-                                Icon(Icons.navigation_outlined),
+                                Icon(
+                                  Icons.navigation_outlined,
+                                  color: const Color(0xff3B82F6),
+                                ),
                                 SizedBox(width: 4.w),
                                 Text(
                                   'Navigate',
@@ -147,13 +154,17 @@ class ViewJobScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: .center,
                               children: [
-                                Icon(Icons.call),
+                                Icon(
+                                  Icons.call,
+                                  color: AppColors.textSecondary,
+                                ),
                                 SizedBox(width: 4.w),
                                 Text(
                                   'Call',
                                   style: TextStyle(
                                     fontSize: 13.sp,
                                     fontWeight: .w700,
+                                    color: AppColors.textSecondary,
                                     // color: const Color(0xff3B82F6),
                                   ),
                                 ),
@@ -205,7 +216,7 @@ class ViewJobScreen extends StatelessWidget {
           style: TextStyle(
             fontSize: 18.sp,
             fontWeight: FontWeight.w800,
-            color: Colors.white,
+            color: AppColors.textPrimary,
           ),
         ),
         Text(

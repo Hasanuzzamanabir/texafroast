@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:texafrost/features/customer/views/screens/customer_list_screen.dart';
 import 'package:texafrost/features/dashboard/models/dashboard_summary_model.dart';
+import 'package:texafrost/features/dashboard/views/screens/dashboard_home_view.dart';
 import 'package:texafrost/features/dashboard/views/widgets/job_card_widget.dart';
-import 'package:texafrost/features/profile/views/screens/profile_screen.dart';
+import 'package:texafrost/features/messages/views/screens/messages_screen.dart';
 import 'package:texafrost/features/schedule/views/screens/schedule_screen.dart';
-import 'package:texafrost/features/sync_queue/views/screens/offline_queue_screen.dart';
 import 'package:texafrost/routes/app_routes.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/imagepath.dart';
 import '../../../../core/widgets/custom_bottom_nav_bar.dart';
+import '../../../../core/widgets/secondary_menu_sheet.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -19,10 +21,11 @@ class HomeScreen extends StatelessWidget {
     final provider = context.watch<DashboardProvider>();
 
     final List<Widget> pages = [
-      const _JobsView(),
+      const DashboardHomeView(),
       const ScheduleScreen(),
-      const OfflineQueueContentView(),
-      const ProfileScreen(),
+      const _JobsView(),
+      const CustomerListScreen(),
+      const MessagesScreen(),
     ];
 
     return Scaffold(
@@ -31,6 +34,7 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: provider.currentIndex,
         jobsBadgeCount: provider.unreadJobsCount,
+        messagesBadgeCount: provider.unreadMessagesCount,
         onTap: (index) {
           provider.changeTab(index);
         },
@@ -59,6 +63,14 @@ class _JobsView extends StatelessWidget {
                   ImagePath.appLogoImage,
                   width: 125.w,
                   fit: BoxFit.contain,
+                  errorBuilder: (_, __, ___) => Text(
+                    'Texafrost',
+                    style: TextStyle(
+                      color: AppColors.orangeStart,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                 ),
                 Row(
                   children: [
@@ -69,8 +81,11 @@ class _JobsView extends StatelessWidget {
                           width: 38.w,
                           height: 38.h,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF1A1C22),
+                            color: AppColors.surface,
                             borderRadius: BorderRadius.circular(10.r),
+                            border: Border.all(
+                              color: AppColors.lightGrayBorder,
+                            ),
                           ),
                           child: Icon(
                             Icons.notifications_outlined,
@@ -83,8 +98,8 @@ class _JobsView extends StatelessWidget {
                           right: -4.w,
                           child: Container(
                             padding: EdgeInsets.all(4.w),
-                            decoration: const BoxDecoration(
-                              color: Color(0xFFEF4444),
+                            decoration: BoxDecoration(
+                              color: AppColors.redStart,
                               shape: BoxShape.circle,
                             ),
                             child: Text(
@@ -100,20 +115,22 @@ class _JobsView extends StatelessWidget {
                         ),
                       ],
                     ),
-                    // SizedBox(width: 10.w),
-                    // Container(
-                    //   width: 38.w,
-                    //   height: 38.h,
-                    //   decoration: const BoxDecoration(
-                    //     shape: BoxShape.circle,
-                    //     color: AppColors.orangeStart,
-                    //   ),
-                    //   child: Icon(
-                    //     Icons.person,
-                    //     color: Colors.white,
-                    //     size: 24.sp,
-                    //   ),
-                    // ),
+                    SizedBox(width: 10.w),
+                    GestureDetector(
+                      onTap: () => SecondaryMenuSheet.show(context),
+                      child: CircleAvatar(
+                        radius: 19.r,
+                        backgroundColor: AppColors.orangeStart,
+                        child: Text(
+                          'TH',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -195,19 +212,19 @@ class _JobsView extends StatelessWidget {
                             margin: EdgeInsets.only(right: 10.w),
                             padding: EdgeInsets.symmetric(
                               horizontal: 18.w,
-                              vertical: 10.h,
+                              vertical: 9.h,
                             ),
                             decoration: BoxDecoration(
                               color: isSelected
                                   ? AppColors.orangeStart
-                                  : const Color(0xFF1E2129),
+                                  : AppColors.surface,
                               borderRadius: BorderRadius.circular(24.r),
-                              border: isSelected
-                                  ? null
-                                  : Border.all(
-                                      color: Colors.white.withOpacity(0.06),
-                                      width: 1,
-                                    ),
+                              border: Border.all(
+                                color: isSelected
+                                    ? AppColors.orangeStart
+                                    : AppColors.lightGrayBorder,
+                                width: 1,
+                              ),
                             ),
                             child: Text(
                               provider.filters[index],

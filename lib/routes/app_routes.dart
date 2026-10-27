@@ -18,6 +18,9 @@ import 'package:texafrost/features/jobs/views/screens/view_job_screen.dart';
 import 'package:texafrost/features/onboarding/views/screens/onboarding_screen.dart';
 import 'package:texafrost/features/splash/splash_screen.dart';
 import 'package:texafrost/features/sync_queue/views/screens/sync_details_screen.dart';
+import 'package:texafrost/features/customer/views/screens/customer_list_screen.dart';
+import 'package:texafrost/features/messages/views/screens/messages_screen.dart';
+import 'package:texafrost/features/profile/views/screens/profile_screen.dart';
 
 // Screens
 // import '../features/auth/views/screens/pin_screen.dart';
@@ -61,6 +64,9 @@ class AppRoutes {
   static const String partsAndMaterials = '/parts-and-materials';
   static const String photoAndVideo = '/photo-and-video';
   static const String customerSignature = '/customer-signature';
+  static const String customers = '/customers';
+  static const String messages = '/messages';
+  static const String profile = '/profile';
 
   // Route Generator
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -110,35 +116,18 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (_) => const CustomerSignatureScreen(),
         );
-      // case pinAuth:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const PinScreen(),
-      //   );
-
-      // case schedule:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const ScheduleScreen(),
-      //   );
-
-      // case customerInfo:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const CustomerInfoScreen(),
-      //   );
-
-      // case jobDetails:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const JobDetailScreen(),
-      //   );
-
-      // case offlineQueue:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const OfflineQueueScreen(),
-      //   );
-
-      // case profile:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const ProfileScreen(),
-      //   );
+      case customers:
+        return MaterialPageRoute(
+          builder: (_) => const CustomerListScreen(),
+        );
+      case messages:
+        return MaterialPageRoute(
+          builder: (_) => const MessagesScreen(),
+        );
+      case profile:
+        return MaterialPageRoute(
+          builder: (_) => const ProfileScreen(),
+        );
 
       default:
         return MaterialPageRoute(

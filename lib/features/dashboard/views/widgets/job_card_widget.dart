@@ -21,12 +21,19 @@ class JobCardWidget extends StatelessWidget {
         margin: EdgeInsets.only(bottom: 14.h),
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
-          color: const Color(0xFF131418),
+          color: AppColors.surface,
           borderRadius: BorderRadius.circular(16.r),
           border: Border.all(
-            color: Colors.white.withOpacity(0.06),
+            color: AppColors.lightGrayBorder,
             width: 1,
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.03),
+              blurRadius: 8,
+              offset: const Offset(0, 2),
+            ),
+          ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,13 +53,14 @@ class JobCardWidget extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF1F222A),
+                    color: AppColors.surfaceLight,
                     borderRadius: BorderRadius.circular(6.r),
+                    border: Border.all(color: AppColors.lightGrayBorder),
                   ),
                   child: Text(
                     job.status,
                     style: TextStyle(
-                      color: const Color(0xFF9E9EA7),
+                      color: AppColors.textSecondary,
                       fontSize: 10.sp,
                       fontWeight: FontWeight.w700,
                       letterSpacing: 0.8,
@@ -69,8 +77,8 @@ class JobCardWidget extends StatelessWidget {
                     job.title,
                     style: TextStyle(
                       color: AppColors.textPrimary,
-                      fontSize: 17.sp,
-                      fontWeight: FontWeight.w700,
+                      fontSize: 16.5.sp,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
                 ),
@@ -98,7 +106,7 @@ class JobCardWidget extends StatelessWidget {
                     job.address,
                     style: TextStyle(
                       color: AppColors.textSecondary,
-                      fontSize: 13.sp,
+                      fontSize: 12.5.sp,
                       fontWeight: FontWeight.w400,
                     ),
                     maxLines: 1,
@@ -123,8 +131,8 @@ class JobCardWidget extends StatelessWidget {
                       job.timeRange,
                       style: TextStyle(
                         color: AppColors.textSecondary,
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w400,
+                        fontSize: 12.5.sp,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
@@ -132,15 +140,16 @@ class JobCardWidget extends StatelessWidget {
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF281810),
+                    color: AppColors.orangeLight,
                     borderRadius: BorderRadius.circular(8.r),
+                    border: Border.all(color: AppColors.orangeBorder),
                   ),
                   child: Text(
                     job.serviceTag,
                     style: TextStyle(
-                      color: AppColors.orangeStart,
+                      color: AppColors.orangeEnd,
                       fontSize: 11.sp,
-                      fontWeight: FontWeight.w600,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
                 ),

@@ -15,7 +15,7 @@ Widget getCheckBox({
       title: Text(
         title,
         style: TextStyle(
-          color: Colors.white,
+          color: AppColors.labelText,
           decoration: val ? TextDecoration.lineThrough : null,
           decorationColor: AppColors.textSecondary,
           decorationThickness: 2.w,

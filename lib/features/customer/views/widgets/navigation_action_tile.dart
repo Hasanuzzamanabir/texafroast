@@ -20,12 +20,19 @@ class NavigationActionTile extends StatelessWidget {
         margin: EdgeInsets.only(bottom: 12.h),
         padding: EdgeInsets.symmetric(horizontal: 18.w, vertical: 18.h),
         decoration: BoxDecoration(
-          color: const Color(0xFF131418),
+          color: AppColors.surface,
           borderRadius: BorderRadius.circular(14.r),
           border: Border.all(
-            color: Colors.white.withOpacity(0.06),
+            color: AppColors.lightGrayBorder,
             width: 1,
           ),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.02),
+              blurRadius: 6,
+              offset: const Offset(0, 2),
+            ),
+          ],
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

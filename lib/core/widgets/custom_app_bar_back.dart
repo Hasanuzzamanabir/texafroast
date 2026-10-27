@@ -23,8 +23,9 @@ class CustomAppBarBack extends StatelessWidget implements PreferredSizeWidget {
                     width: 38.w,
                     height: 38.h,
                     decoration: BoxDecoration(
-                      color: const Color(0xFF1E2129),
+                      color: AppColors.surface,
                       borderRadius: BorderRadius.circular(10.r),
+                      border: Border.all(color: AppColors.lightGrayBorder),
                     ),
                     child: Icon(
                       Icons.arrow_back_ios_new_rounded,

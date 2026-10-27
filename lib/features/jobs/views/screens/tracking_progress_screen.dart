@@ -81,6 +81,7 @@ class TrackingProgressScreen extends StatelessWidget {
                             borderRadius: .circular(12.r),
                             color: AppColors.orangeEnd,
                             minHeight: 6.h,
+                            backgroundColor: Colors.white,
                           ),
                     ),
                     SizedBox(height: 10.h),

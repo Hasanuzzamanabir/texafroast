@@ -53,7 +53,7 @@ class WorkStepWidget extends StatelessWidget {
                     color: isCompleted
                         ? Colors.white
                         : onTap == null
-                        ? Colors.white38
+                        ? Colors.grey
                         : iconColor,
                   ),
                 ),
@@ -67,10 +67,10 @@ class WorkStepWidget extends StatelessWidget {
                           fontSize: 14.sp,
                           fontWeight: .w700,
                           color: isCompleted
-                              ? Colors.white
+                              ? AppColors.textSecondary
                               : onTap == null
-                              ? Colors.white24
-                              : Colors.white,
+                              ? Colors.grey
+                              : AppColors.textSecondary,
                         ),
                       ),
                       Text(
@@ -81,7 +81,7 @@ class WorkStepWidget extends StatelessWidget {
                           color: isCompleted
                               ? AppColors.labelText
                               : onTap == null
-                              ? Colors.white24
+                              ? Colors.grey
                               : AppColors.labelText,
                         ),
                       ),
@@ -96,10 +96,10 @@ class WorkStepWidget extends StatelessWidget {
                     : Icon(
                         Icons.keyboard_arrow_right_sharp,
                         color: isCompleted
-                            ? Colors.white
+                            ? AppColors.textSecondary
                             : onTap == null
                             ? Colors.white24
-                            : Colors.white,
+                            : AppColors.textSecondary,
                       ),
               ],
             ),

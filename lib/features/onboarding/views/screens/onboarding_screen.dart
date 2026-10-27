@@ -46,7 +46,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       buttonType: ButtonType.blue,
       buttonText: 'Continue',
       themeColor: AppColors.blueGlow, // #60A5FA
-      bgGlowColor: Color(0xFF0D1B2A),
+      bgGlowColor: Color.fromARGB(255, 107, 149, 190),
     ),
     // 2nd Screen: Orange (Wrench)
     OnboardData(
@@ -57,7 +57,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       buttonType: ButtonType.orange,
       buttonText: 'Continue',
       themeColor: AppColors.orangeStart, // #F97316
-      bgGlowColor: Color(0xFF2E1505),
+      bgGlowColor: Color.fromARGB(255, 206, 173, 145),
     ),
     // 3rd Screen: Green (Dish Antenna)
     OnboardData(
@@ -68,7 +68,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       buttonType: ButtonType.green,
       buttonText: 'Get Started',
       themeColor: AppColors.greenStart, // #22C55E
-      bgGlowColor: Color(0xFF0A2312),
+      bgGlowColor: Color.fromARGB(255, 183, 255, 193),
     ),
   ];
 
@@ -175,17 +175,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 begin: Alignment.topCenter,
                                 end: Alignment.bottomCenter,
                                 colors: [
-                                  item.themeColor.withOpacity(0.133), // 13.3%[cite: 16, 17, 18]
-                                  item.themeColor.withOpacity(0.267), // 26.7%[cite: 16, 17, 18]
+                                  item.themeColor.withOpacity(
+                                    0.133,
+                                  ), // 13.3%[cite: 16, 17, 18]
+                                  item.themeColor.withOpacity(
+                                    0.267,
+                                  ), // 26.7%[cite: 16, 17, 18]
                                 ],
                               ),
                               border: Border.all(
-                                color: item.themeColor.withOpacity(0.267), // 26.7%[cite: 16, 17, 18]
+                                color: item.themeColor.withOpacity(
+                                  0.267,
+                                ), // 26.7%[cite: 16, 17, 18]
                                 width: 1, //[cite: 16, 17, 18]
                               ),
                               boxShadow: [
                                 BoxShadow(
-                                  color: item.themeColor.withOpacity(0.20), // 20%[cite: 16, 17, 18]
+                                  color: item.themeColor.withOpacity(
+                                    0.20,
+                                  ), // 20%[cite: 16, 17, 18]
                                   blurRadius: 60, //[cite: 16, 17, 18]
                                   offset: const Offset(0, 0),
                                   spreadRadius: 0,
@@ -231,7 +239,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                               item.description,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: AppColors.textSecondary,
+                                color: AppColors.textPrimary,
                                 fontSize: 15.sp, //[cite: 19]
                                 height: 25.5 / 15, // 1.7[cite: 19]
                                 fontWeight: FontWeight.w400, //[cite: 19]

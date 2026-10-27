@@ -3,35 +3,47 @@ import 'package:flutter/material.dart';
 class AppColors {
   AppColors._();
 
-  static const Color background = Color(0xFF0A0A0B);
+  // Background & Surfaces (Default White theme)
+  static const Color background = Color(0xFFF8FAFC);
   static const Color Background = background;
-  static const Color surfaceLight = Color(0xFF2A2A2F);
-  // Text Colors
-  static const Color textPrimary = Color(0xFFFFFFFF);
-  static const Color textSecondary = Color(0xFF9CA3AF);
-  static const Color skipButtonBg = Color(0xFF1E2129);
+  static const Color surface = Color(0xFFFFFFFF);
+  static const Color surfaceLight = Color(0xFFF1F5F9);
+  static const Color cardBg = Color(0xFFFFFFFF);
+  static const Color cardBorder = Color(0xFFE2E8F0);
 
-  // Figma Gradient Colors
-  // Orange
+  // Text Colors (Dark readable text)
+  static const Color textPrimary = Color(0xFF0F172A);
+  static const Color textSecondary = Color(0xFF64748B);
+  static const Color textMuted = Color(0xFF94A3B8);
+  static const Color skipButtonBg = Color(0xFFF1F5F9);
+
+  // Protra's Orange (Primary Buttons & Selected Items)
   static const Color orangeStart = Color(0xFFF97316);
   static const Color orangeEnd = Color(0xFFEA580C);
+  static const Color orangeLight = Color(0xFFFFF7ED);
+  static const Color orangeBorder = Color(0xFFFED7AA);
 
-  // Blue
-  static const Color blueStart = Color(0xFF3B82F6);
-  static const Color blueEnd = Color(0xFF6366F1);
-  static const Color blueGlow = Color(0xFF60A5FA);
+  // Accent & State Colors
+  static const Color blueStart = Color(0xFF2563EB);
+  static const Color blueEnd = Color(0xFF1D4ED8);
+  static const Color blueGlow = Color(0xFF3B82F6);
+  static const Color blueLight = Color(0xFFEFF6FF);
 
-  // Green
-  static const Color greenStart = Color(0xFF22C55E);
-  static const Color greenEnd = Color(0xFF16A34A);
+  static const Color greenStart = Color(0xFF16A34A);
+  static const Color greenEnd = Color(0xFF15803D);
+  static const Color greenLight = Color(0xFFF0FDF4);
 
-  // Text Field Colors (From Figma Inspector)
-  static const Color inputBackground = Color(0xFF1C1C1F);
-  static const Color inputBorder = Color(0xFF2A2A2F);
-  static const Color inputHint = Color(0xFF6B6B7A);
-  static const Color labelText = Color(0xFF8E8E93);
+  static const Color redStart = Color(0xFFEF4444);
+  static const Color redLight = Color(0xFFFEF2F2);
 
-  // Button Gradients
+  // Light Gray Borders & Form Inputs
+  static const Color lightGrayBorder = Color(0xFFE2E8F0);
+  static const Color inputBackground = Color(0xFFFFFFFF);
+  static const Color inputBorder = Color(0xFFCBD5E1);
+  static const Color inputHint = Color(0xFF94A3B8);
+  static const Color labelText = Color(0xFF334155);
+
+  // Gradients
   static const LinearGradient orangeGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
@@ -53,6 +65,6 @@ class AppColors {
   static const LinearGradient cardGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [Color(0xFF222430), Color(0xFF1B1C24)],
+    colors: [Color(0xFFFFFFFF), Color(0xFFF8FAFC)],
   );
 }

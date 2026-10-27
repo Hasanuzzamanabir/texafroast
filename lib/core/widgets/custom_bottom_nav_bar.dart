@@ -9,23 +9,32 @@ class CustomBottomNavBar extends StatelessWidget {
     required this.currentIndex,
     required this.onTap,
     this.jobsBadgeCount = 0,
+    this.messagesBadgeCount = 0,
   });
 
   final int currentIndex;
   final ValueChanged<int> onTap;
   final int jobsBadgeCount;
+  final int messagesBadgeCount;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF0F1015), 
+        color: AppColors.surface,
         border: Border(
           top: BorderSide(
-            color: Colors.white.withOpacity(0.06),
+            color: AppColors.lightGrayBorder,
             width: 1,
           ),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 10,
+            offset: const Offset(0, -3),
+          ),
+        ],
       ),
       child: SafeArea(
         top: false,
@@ -36,24 +45,32 @@ class CustomBottomNavBar extends StatelessWidget {
             children: [
               _buildNavItem(
                 index: 0,
-                label: 'Jobs',
-                iconPath: IconPath.jobsIcon,
-                badgeCount: jobsBadgeCount,
+                label: 'Home',
+                icon: Icons.home_rounded,
               ),
               _buildNavItem(
                 index: 1,
                 label: 'Schedule',
                 iconPath: IconPath.scheduleIcon,
+                fallbackIcon: Icons.calendar_today_rounded,
               ),
               _buildNavItem(
                 index: 2,
-                label: 'Sync',
-                iconPath: IconPath.syncIcon,
+                label: 'Jobs',
+                iconPath: IconPath.jobsIcon,
+                fallbackIcon: Icons.assignment_rounded,
+                badgeCount: jobsBadgeCount,
               ),
               _buildNavItem(
                 index: 3,
-                label: 'Profile',
-                iconPath: IconPath.profileIcon,
+                label: 'Customers',
+                icon: Icons.people_alt_rounded,
+              ),
+              _buildNavItem(
+                index: 4,
+                label: 'Messages',
+                icon: Icons.chat_bubble_rounded,
+                badgeCount: messagesBadgeCount,
               ),
             ],
           ),
@@ -65,17 +82,19 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget _buildNavItem({
     required int index,
     required String label,
-    required String iconPath,
+    IconData? icon,
+    String? iconPath,
+    IconData? fallbackIcon,
     int badgeCount = 0,
   }) {
     final bool isSelected = currentIndex == index;
     final Color itemColor =
-        isSelected ? AppColors.orangeStart : const Color(0xFF6B7280); 
+        isSelected ? AppColors.orangeStart : AppColors.textSecondary;
 
     return Expanded(
       child: InkWell(
         onTap: () => onTap(index),
-        splashColor: Colors.transparent,
+        splashColor: AppColors.orangeLight,
         highlightColor: Colors.transparent,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -83,23 +102,30 @@ class CustomBottomNavBar extends StatelessWidget {
             Stack(
               clipBehavior: Clip.none,
               children: [
-                Image.asset(
-                  iconPath,
-                  width: 24.w,
-                  height: 24.h,
-                  color: itemColor,
-                  fit: BoxFit.contain,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Icon(
-                      Icons.circle_outlined,
-                      size: 22.sp,
-                      color: itemColor,
-                    );
-                  },
-                ),
+                if (iconPath != null)
+                  Image.asset(
+                    iconPath,
+                    width: 22.w,
+                    height: 22.h,
+                    color: itemColor,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Icon(
+                        fallbackIcon ?? Icons.circle_outlined,
+                        size: 22.sp,
+                        color: itemColor,
+                      );
+                    },
+                  )
+                else
+                  Icon(
+                    icon ?? Icons.circle_outlined,
+                    size: 22.sp,
+                    color: itemColor,
+                  ),
                 if (badgeCount > 0)
                   Positioned(
-                    top: -5.h,
+                    top: -4.h,
                     right: -7.w,
                     child: Container(
                       padding: EdgeInsets.symmetric(
@@ -107,14 +133,14 @@ class CustomBottomNavBar extends StatelessWidget {
                         vertical: 1.h,
                       ),
                       constraints: BoxConstraints(
-                        minWidth: 15.w,
-                        minHeight: 15.h,
+                        minWidth: 16.w,
+                        minHeight: 16.h,
                       ),
                       decoration: BoxDecoration(
-                        color: const Color(0xFFEF4444),
+                        color: AppColors.redStart,
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: const Color(0xFF0F1015),
+                          color: AppColors.surface,
                           width: 1.5,
                         ),
                       ),
@@ -133,13 +159,13 @@ class CustomBottomNavBar extends StatelessWidget {
                   ),
               ],
             ),
-            SizedBox(height: 5.h),
+            SizedBox(height: 4.h),
             Text(
               label,
               style: TextStyle(
                 color: itemColor,
-                fontSize: 11.sp,
-                fontWeight: isSelected ? FontWeight.w600 : FontWeight.w500,
+                fontSize: 10.5.sp,
+                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
               ),
             ),
           ],
