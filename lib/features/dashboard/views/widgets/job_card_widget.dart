@@ -41,15 +41,19 @@ class JobCardWidget extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  job.id,
-                  style: TextStyle(
-                    color: AppColors.textSecondary,
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.8,
+                Expanded(
+                  child: Text(
+                    job.id,
+                    style: TextStyle(
+                      color: AppColors.textSecondary,
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.8,
+                    ),
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
+                SizedBox(width: 8.w),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.h),
                   decoration: BoxDecoration(
@@ -120,6 +124,7 @@ class JobCardWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Icon(
                       Icons.access_time_rounded,
@@ -137,19 +142,25 @@ class JobCardWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
-                  decoration: BoxDecoration(
-                    color: AppColors.orangeLight,
-                    borderRadius: BorderRadius.circular(8.r),
-                    border: Border.all(color: AppColors.orangeBorder),
-                  ),
-                  child: Text(
-                    job.serviceTag,
-                    style: TextStyle(
-                      color: AppColors.orangeEnd,
-                      fontSize: 11.sp,
-                      fontWeight: FontWeight.w700,
+                SizedBox(width: 8.w),
+                Flexible(
+                  child: Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
+                    decoration: BoxDecoration(
+                      color: AppColors.orangeLight,
+                      borderRadius: BorderRadius.circular(8.r),
+                      border: Border.all(color: AppColors.orangeBorder),
+                    ),
+                    child: Text(
+                      job.serviceTag,
+                      style: TextStyle(
+                        color: AppColors.orangeEnd,
+                        fontSize: 11.sp,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),

@@ -1,31 +1,71 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:texafrost/app.dart';
-
-import 'package:texafrost/main.dart';
+import 'package:provider/provider.dart';
+import 'package:texafrost/features/jobs/view_models/job_tracking_view_model.dart';
+import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/customer_signature_screen.dart';
+import 'package:texafrost/features/jobs/views/screens/tracking_progress_sub_screens/part_material_screen.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const Texafrost());
+  Widget createScreen(Widget child, JobTrackingViewModel viewModel) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<JobTrackingViewModel>.value(value: viewModel),
+      ],
+      child: ScreenUtilInit(
+        designSize: const Size(375, 812),
+        builder: (context, _) => MaterialApp(
+          home: child,
+        ),
+      ),
+    );
+  }
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('PartMaterialScreen displays items, increments and decrements total',
+      (WidgetTester tester) async {
+    final viewModel = JobTrackingViewModel();
+    await tester.pumpWidget(createScreen(const PartMaterialScreen(), viewModel));
+    await tester.pumpAndSettle();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    expect(find.text('Parts & Materials'), findsOneWidget);
+    expect(find.text('Air Filter 16×25×1 MERV-11'), findsOneWidget);
+    expect(find.text('Condensate Pan Tablets (25-pack)'), findsOneWidget);
+    expect(find.text('Parts Total'), findsOneWidget);
+    expect(find.text('\$22.00'), findsOneWidget);
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Tap '+' on the first item
+    await tester.tap(find.byIcon(Icons.add).first);
+    await tester.pumpAndSettle();
+
+    // Check quantity incremented
+    expect(find.text('\$34.50'), findsOneWidget);
+
+    // Ensure Save & Continue is visible, then tap
+    final saveButton = find.text('Save & Continue');
+    await tester.ensureVisible(saveButton);
+    await tester.tap(saveButton);
+    await tester.pumpAndSettle();
+
+    // Verify step 4 is completed in ViewModel
+    expect(viewModel.completedSteps[4], isTrue);
+  });
+
+  testWidgets('CustomerSignatureScreen clears and completes signature step',
+      (WidgetTester tester) async {
+    final viewModel = JobTrackingViewModel();
+    await tester.pumpWidget(createScreen(const CustomerSignatureScreen(), viewModel));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Customer Signature'), findsOneWidget);
+    expect(find.text('Service Acknowledgment'), findsOneWidget);
+    expect(find.text('SIGNATURE'), findsOneWidget);
+
+    // Ensure button is visible, then tap
+    final completeButton = find.text('Complete & Save Signature');
+    await tester.ensureVisible(completeButton);
+    await tester.tap(completeButton);
+    await tester.pumpAndSettle();
+
+    expect(viewModel.completedSteps[5], isTrue);
   });
 }

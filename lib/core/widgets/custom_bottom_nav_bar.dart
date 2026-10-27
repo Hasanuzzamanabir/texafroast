@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../constants/app_colors.dart';
-import '../constants/icon_path.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({
@@ -46,30 +45,33 @@ class CustomBottomNavBar extends StatelessWidget {
               _buildNavItem(
                 index: 0,
                 label: 'Home',
-                icon: Icons.home_rounded,
+                activeIcon: Icons.home_rounded,
+                inactiveIcon: Icons.home_outlined,
               ),
               _buildNavItem(
                 index: 1,
                 label: 'Schedule',
-                iconPath: IconPath.scheduleIcon,
-                fallbackIcon: Icons.calendar_today_rounded,
+                activeIcon: Icons.calendar_month_rounded,
+                inactiveIcon: Icons.calendar_month_outlined,
               ),
               _buildNavItem(
                 index: 2,
                 label: 'Jobs',
-                iconPath: IconPath.jobsIcon,
-                fallbackIcon: Icons.assignment_rounded,
+                activeIcon: Icons.assignment_rounded,
+                inactiveIcon: Icons.assignment_outlined,
                 badgeCount: jobsBadgeCount,
               ),
               _buildNavItem(
                 index: 3,
                 label: 'Customers',
-                icon: Icons.people_alt_rounded,
+                activeIcon: Icons.people_alt_rounded,
+                inactiveIcon: Icons.people_alt_outlined,
               ),
               _buildNavItem(
                 index: 4,
                 label: 'Messages',
-                icon: Icons.chat_bubble_rounded,
+                activeIcon: Icons.chat_bubble_rounded,
+                inactiveIcon: Icons.chat_bubble_outline_rounded,
                 badgeCount: messagesBadgeCount,
               ),
             ],
@@ -82,9 +84,8 @@ class CustomBottomNavBar extends StatelessWidget {
   Widget _buildNavItem({
     required int index,
     required String label,
-    IconData? icon,
-    String? iconPath,
-    IconData? fallbackIcon,
+    required IconData activeIcon,
+    required IconData inactiveIcon,
     int badgeCount = 0,
   }) {
     final bool isSelected = currentIndex == index;
@@ -92,83 +93,74 @@ class CustomBottomNavBar extends StatelessWidget {
         isSelected ? AppColors.orangeStart : AppColors.textSecondary;
 
     return Expanded(
-      child: InkWell(
-        onTap: () => onTap(index),
-        splashColor: AppColors.orangeLight,
-        highlightColor: Colors.transparent,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Stack(
-              clipBehavior: Clip.none,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          onTap: () => onTap(index),
+          splashColor: AppColors.orangeStart.withValues(alpha: 0.12),
+          highlightColor: AppColors.orangeStart.withValues(alpha: 0.06),
+          child: SizedBox(
+            height: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                if (iconPath != null)
-                  Image.asset(
-                    iconPath,
-                    width: 22.w,
-                    height: 22.h,
-                    color: itemColor,
-                    fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Icon(
-                        fallbackIcon ?? Icons.circle_outlined,
-                        size: 22.sp,
-                        color: itemColor,
-                      );
-                    },
-                  )
-                else
-                  Icon(
-                    icon ?? Icons.circle_outlined,
-                    size: 22.sp,
-                    color: itemColor,
-                  ),
-                if (badgeCount > 0)
-                  Positioned(
-                    top: -4.h,
-                    right: -7.w,
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 4.w,
-                        vertical: 1.h,
-                      ),
-                      constraints: BoxConstraints(
-                        minWidth: 16.w,
-                        minHeight: 16.h,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.redStart,
-                        shape: BoxShape.circle,
-                        border: Border.all(
-                          color: AppColors.surface,
-                          width: 1.5,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          badgeCount > 99 ? '99+' : badgeCount.toString(),
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 9.sp,
-                            fontWeight: FontWeight.w700,
-                            height: 1,
+                Stack(
+                  clipBehavior: Clip.none,
+                  children: [
+                    Icon(
+                      isSelected ? activeIcon : inactiveIcon,
+                      size: 23.sp,
+                      color: itemColor,
+                    ),
+                    if (badgeCount > 0)
+                      Positioned(
+                        top: -4.h,
+                        right: -7.w,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 4.w,
+                            vertical: 1.h,
+                          ),
+                          constraints: BoxConstraints(
+                            minWidth: 16.w,
+                            minHeight: 16.h,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColors.redStart,
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: AppColors.surface,
+                              width: 1.5,
+                            ),
+                          ),
+                          child: Center(
+                            child: Text(
+                              badgeCount > 99 ? '99+' : badgeCount.toString(),
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 9.sp,
+                                fontWeight: FontWeight.w700,
+                                height: 1,
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
+                  ],
+                ),
+                SizedBox(height: 4.h),
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: itemColor,
+                    fontSize: 10.5.sp,
+                    fontWeight: isSelected ? FontWeight.w800 : FontWeight.w500,
                   ),
+                  maxLines: 1,
+                ),
               ],
             ),
-            SizedBox(height: 4.h),
-            Text(
-              label,
-              style: TextStyle(
-                color: itemColor,
-                fontSize: 10.5.sp,
-                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

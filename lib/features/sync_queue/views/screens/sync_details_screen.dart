@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:texafrost/features/sync_queue/views/widgets/pending_change_tile.dart.dart';
 import '../../../../core/constants/app_colors.dart';
-import '../../../../core/widgets/custom_bottom_nav_bar.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../view_models/sync_queue_view_model.dart';
 
@@ -39,7 +38,8 @@ class SyncDetailsScreen extends StatelessWidget {
                                 width: 36.w,
                                 height: 36.h,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF1E2129),
+                                  color: AppColors.inputBackground,
+                                  border: .all(color: AppColors.cardBorder),
                                   borderRadius: BorderRadius.circular(10.r),
                                 ),
                                 child: Icon(
@@ -77,12 +77,9 @@ class SyncDetailsScreen extends StatelessWidget {
                       width: double.infinity,
                       padding: EdgeInsets.all(16.w),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF131418),
+                        color: AppColors.surface,
                         borderRadius: BorderRadius.circular(16.r),
-                        border: Border.all(
-                          color: Colors.white.withOpacity(0.06),
-                          width: 1,
-                        ),
+                        border: .all(color: AppColors.cardBorder),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -104,7 +101,8 @@ class SyncDetailsScreen extends StatelessWidget {
                                   vertical: 4.h,
                                 ),
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFF281810),
+                                  color: AppColors.inputBackground,
+                                  border: .all(color: AppColors.cardBorder),
                                   borderRadius: BorderRadius.circular(6.r),
                                 ),
                                 child: Text(
@@ -157,12 +155,9 @@ class SyncDetailsScreen extends StatelessWidget {
                       width: double.infinity,
                       padding: EdgeInsets.all(16.w),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF131418),
+                        color: AppColors.surface,
                         borderRadius: BorderRadius.circular(16.r),
-                        border: Border.all(
-                          color: Colors.white.withOpacity(0.06),
-                          width: 1,
-                        ),
+                        border: Border.all(color: AppColors.cardBorder),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -209,7 +204,7 @@ class SyncDetailsScreen extends StatelessWidget {
                             child: LinearProgressIndicator(
                               value: 0.65,
                               minHeight: 6.h,
-                              backgroundColor: const Color(0xFF27272A),
+                              backgroundColor: AppColors.cardBorder,
                               valueColor: const AlwaysStoppedAnimation<Color>(
                                 AppColors.orangeStart,
                               ),
@@ -248,12 +243,9 @@ class SyncDetailsScreen extends StatelessWidget {
                       width: double.infinity,
                       padding: EdgeInsets.all(16.w),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF131418),
+                        color: AppColors.surface,
                         borderRadius: BorderRadius.circular(16.r),
-                        border: Border.all(
-                          color: Colors.white.withOpacity(0.06),
-                          width: 1,
-                        ),
+                        border: Border.all(color: AppColors.cardBorder),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -279,7 +271,7 @@ class SyncDetailsScreen extends StatelessWidget {
                     CustomButtonWidget(
                       title: 'Retry Sync Now',
                       type: ButtonType.orange,
-                     // icon: Icons.sync_rounded,
+                      // icon: Icons.sync_rounded,
                       onTap: () {
                         syncViewModel.forceSync();
                       },
@@ -303,17 +295,6 @@ class SyncDetailsScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-
-      // Bottom Nav Bar add kora holo[cite: 13]
-      bottomNavigationBar: CustomBottomNavBar(
-        currentIndex: 2, // Sync tab selected thakbe[cite: 13]
-        jobsBadgeCount: 2, // Figma onujayi badge count[cite: 14]
-        onTap: (index) {
-          if (index != 2) {
-            Navigator.pop(context); // Baki tab-e tap korle details close hoye home-e fire jabe
-          }
-        },
       ),
     );
   }

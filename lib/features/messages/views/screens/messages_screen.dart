@@ -17,7 +17,8 @@ class _MessagesScreenState extends State<MessagesScreen> {
     {
       'name': 'Central Dispatch',
       'role': 'Dispatcher · Sarah M.',
-      'lastMessage': 'Urgent: Added diagnostic notes to Sunview Medical job #048.',
+      'lastMessage':
+          'Urgent: Added diagnostic notes to Sunview Medical job #048.',
       'time': '10:45 AM',
       'unread': 2,
       'isDispatch': true,
@@ -25,7 +26,8 @@ class _MessagesScreenState extends State<MessagesScreen> {
     {
       'name': 'Marcus Vance',
       'role': 'Riverside Office Complex',
-      'lastMessage': 'Front desk is aware, please use the service elevator at dock B.',
+      'lastMessage':
+          'Front desk is aware, please use the service elevator at dock B.',
       'time': '9:12 AM',
       'unread': 1,
       'isDispatch': false,
@@ -49,7 +51,8 @@ class _MessagesScreenState extends State<MessagesScreen> {
     {
       'name': 'Dave Miller',
       'role': 'Lead Technician',
-      'lastMessage': 'Can you transfer the spare recovery tank after your shift?',
+      'lastMessage':
+          'Can you transfer the spare recovery tank after your shift?',
       'time': 'Oct 24',
       'unread': 0,
       'isDispatch': false,
@@ -83,7 +86,10 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 5.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                      vertical: 5.h,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.orangeLight,
                       borderRadius: BorderRadius.circular(16.r),
@@ -172,10 +178,8 @@ class _MessagesScreenState extends State<MessagesScreen> {
               child: ListView.separated(
                 padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
                 itemCount: _messages.length,
-                separatorBuilder: (_, __) => Divider(
-                  color: AppColors.lightGrayBorder,
-                  height: 1,
-                ),
+                separatorBuilder: (_, _) =>
+                    Divider(color: AppColors.lightGrayBorder, height: 1),
                 itemBuilder: (context, index) {
                   final chat = _messages[index];
                   final bool hasUnread = (chat['unread'] as int) > 0;
@@ -183,7 +187,11 @@ class _MessagesScreenState extends State<MessagesScreen> {
 
                   return InkWell(
                     onTap: () {
-                      _showChatDetail(context, chat['name'], chat['lastMessage']);
+                      _showChatDetail(
+                        context,
+                        chat['name'],
+                        chat['lastMessage'],
+                      );
                     },
                     child: Padding(
                       padding: EdgeInsets.symmetric(vertical: 12.h),
@@ -230,18 +238,23 @@ class _MessagesScreenState extends State<MessagesScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(
-                                      chat['name'],
-                                      style: TextStyle(
-                                        color: AppColors.textPrimary,
-                                        fontSize: 14.5.sp,
-                                        fontWeight: hasUnread
-                                            ? FontWeight.w800
-                                            : FontWeight.w600,
+                                    Expanded(
+                                      child: Text(
+                                        chat['name'],
+                                        style: TextStyle(
+                                          color: AppColors.textPrimary,
+                                          fontSize: 14.5.sp,
+                                          fontWeight: hasUnread
+                                              ? FontWeight.w800
+                                              : FontWeight.w600,
+                                        ),
+                                        overflow: TextOverflow.ellipsis,
                                       ),
                                     ),
+                                    SizedBox(width: 8.w),
                                     Text(
                                       chat['time'],
                                       style: TextStyle(
@@ -296,7 +309,11 @@ class _MessagesScreenState extends State<MessagesScreen> {
     );
   }
 
-  void _showChatDetail(BuildContext context, String sender, String lastMessage) {
+  void _showChatDetail(
+    BuildContext context,
+    String sender,
+    String lastMessage,
+  ) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,

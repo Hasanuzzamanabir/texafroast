@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:texafrost/core/constants/app_colors.dart';
 import 'package:texafrost/core/widgets/custom_app_bar_back.dart';
+import 'package:texafrost/core/widgets/custom_button.dart';
 import 'package:texafrost/features/jobs/view_models/job_tracking_view_model.dart';
 import 'package:texafrost/features/jobs/views/widgets/work_step_widget.dart';
 import 'package:texafrost/routes/app_routes.dart';
@@ -92,6 +93,42 @@ class TrackingProgressScreen extends StatelessWidget {
                           fontSize: 12.sp,
                           fontWeight: .w500,
                           color: AppColors.labelText,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 12.h),
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12.w,
+                          vertical: 8.h,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12.r),
+                          border: Border.all(color: AppColors.inputBorder),
+                        ),
+                        child: Row(
+                          mainAxisSize: .min,
+                          spacing: 6.w,
+                          children: [
+                            Icon(
+                              Icons.watch_later_outlined,
+                              color: AppColors.orangeEnd,
+                              size: 18.sp,
+                            ),
+                            Text(
+                              'Clock out',
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: .w500,
+                                color: AppColors.textPrimary,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -195,6 +232,24 @@ class TrackingProgressScreen extends StatelessWidget {
                             }
                           : null,
                     ),
+                    SizedBox(height: 24.h),
+                    if (provider.completedStepsCount != 6)
+                      Center(
+                        child: Text(
+                          'Complete all steps to generate the service report',
+                          style: TextStyle(
+                            fontSize: 12.sp,
+                            fontWeight: .w400,
+                            color: AppColors.labelText,
+                          ),
+                        ),
+                      )
+                    else
+                      CustomButtonWidget(
+                        title: 'Generate Service Report',
+                        type: ButtonType.orange,
+                        onTap: () {},
+                      ),
                   ],
                 ),
               ),

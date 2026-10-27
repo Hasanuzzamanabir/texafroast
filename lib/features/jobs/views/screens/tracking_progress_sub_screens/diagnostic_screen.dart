@@ -81,9 +81,7 @@ class _DiagnosticScreenState extends State<DiagnosticScreen>
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.orangeStart.withValues(
-                        alpha: .1,
-                      ),
+                      backgroundColor: AppColors.surface,
                       shape: RoundedRectangleBorder(
                         borderRadius: .circular(10.r),
                       ),

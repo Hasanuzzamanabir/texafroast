@@ -102,7 +102,7 @@ class _ChecklistScreenState extends State<ChecklistScreen> {
                       value: totalChecked / 16,
                       minHeight: 8.h,
                       borderRadius: BorderRadius.circular(8.r),
-                      backgroundColor: AppColors.labelText,
+                      backgroundColor: AppColors.cardBorder,
                       valueColor: AlwaysStoppedAnimation(AppColors.orangeStart),
                     ),
                   ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:texafrost/features/dashboard/models/dashboard_summary_model.dart';
+import 'package:texafrost/features/dashboard/view_models/dashboard_summary_view_model.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/custom_bottom_nav_bar.dart';
 
@@ -12,10 +12,18 @@ class DashboardScreen extends StatelessWidget {
     final dashboardProvider = context.watch<DashboardProvider>();
 
     final List<Widget> screens = const [
-      Center(child: Text('Jobs Screen', style: TextStyle(color: Colors.white))),
-      Center(child: Text('Schedule Screen', style: TextStyle(color: Colors.white))),
-      Center(child: Text('Sync Screen', style: TextStyle(color: Colors.white))),
-      Center(child: Text('Profile Screen', style: TextStyle(color: Colors.white))),
+      Center(
+        child: Text('Jobs Screen', style: TextStyle(color: Colors.white)),
+      ),
+      Center(
+        child: Text('Schedule Screen', style: TextStyle(color: Colors.white)),
+      ),
+      Center(
+        child: Text('Sync Screen', style: TextStyle(color: Colors.white)),
+      ),
+      Center(
+        child: Text('Profile Screen', style: TextStyle(color: Colors.white)),
+      ),
     ];
 
     return Scaffold(

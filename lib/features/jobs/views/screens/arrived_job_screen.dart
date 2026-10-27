@@ -35,7 +35,7 @@ class _ArrivedJobScreenState extends State<ArrivedJobScreen> {
               decoration: BoxDecoration(
                 color: AppColors.inputBackground,
                 borderRadius: BorderRadius.circular(12.r),
-                border: Border.all(color: AppColors.blueEnd, width: 1),
+                border: Border.all(color: AppColors.orangeBorder, width: 1),
               ),
               child: Column(
                 crossAxisAlignment: .center,
@@ -43,7 +43,7 @@ class _ArrivedJobScreenState extends State<ArrivedJobScreen> {
                   Icon(
                     Icons.pin_drop_outlined,
                     size: 48.r,
-                    color: AppColors.blueEnd,
+                    color: AppColors.orangeStart,
                   ),
                   SizedBox(height: 8.h),
                   Text(
@@ -51,7 +51,7 @@ class _ArrivedJobScreenState extends State<ArrivedJobScreen> {
                     style: TextStyle(
                       fontSize: 13.sp,
                       fontWeight: .w600,
-                      color: AppColors.blueEnd,
+                      color: AppColors.orangeStart,
                     ),
                   ),
                   SizedBox(height: 4.h),
@@ -140,7 +140,10 @@ class _ArrivedJobScreenState extends State<ArrivedJobScreen> {
               title: 'Begin Service Work',
               onTap: (_chk1 && _chk2 && _chk3 && _chk4)
                   ? () {
-                      Navigator.pushNamed(context, AppRoutes.trackingProgress);
+                      Navigator.pushReplacementNamed(
+                        context,
+                        AppRoutes.trackingProgress,
+                      );
                     }
                   : null,
             ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:texafrost/features/customer/views/screens/customer_list_screen.dart';
-import 'package:texafrost/features/dashboard/models/dashboard_summary_model.dart';
+import 'package:texafrost/features/dashboard/view_models/dashboard_summary_view_model.dart';
 import 'package:texafrost/features/dashboard/views/screens/dashboard_home_view.dart';
 import 'package:texafrost/features/dashboard/views/widgets/job_card_widget.dart';
 import 'package:texafrost/features/messages/views/screens/messages_screen.dart';
@@ -149,28 +149,31 @@ class _JobsView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'My Jobs',
-                            style: TextStyle(
-                              color: AppColors.textPrimary,
-                              fontSize: 24.sp,
-                              fontWeight: FontWeight.w800,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'My Jobs',
+                              style: TextStyle(
+                                color: AppColors.textPrimary,
+                                fontSize: 24.sp,
+                                fontWeight: FontWeight.w800,
+                              ),
                             ),
-                          ),
-                          SizedBox(height: 4.h),
-                          Text(
-                            'Tuesday, September 2, 2026',
-                            style: TextStyle(
-                              color: AppColors.textSecondary,
-                              fontSize: 13.sp,
-                              fontWeight: FontWeight.w400,
+                            SizedBox(height: 4.h),
+                            Text(
+                              'Tuesday, September 2, 2026',
+                              style: TextStyle(
+                                color: AppColors.textSecondary,
+                                fontSize: 13.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      SizedBox(width: 8.w),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [

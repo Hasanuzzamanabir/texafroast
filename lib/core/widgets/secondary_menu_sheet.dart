@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../constants/app_colors.dart';
-import '../../features/dashboard/models/dashboard_summary_model.dart';
+import '../../features/dashboard/view_models/dashboard_summary_view_model.dart';
 import '../../features/profile/views/screens/profile_screen.dart';
 import '../../routes/app_routes.dart';
 
@@ -249,13 +249,11 @@ class SecondaryMenuSheet extends StatelessWidget {
       subtitle: subtitle != null
           ? Text(
               subtitle,
-              style: TextStyle(
-                color: AppColors.textSecondary,
-                fontSize: 11.sp,
-              ),
+              style: TextStyle(color: AppColors.textSecondary, fontSize: 11.sp),
             )
           : null,
-      trailing: trailing ??
+      trailing:
+          trailing ??
           Icon(
             Icons.chevron_right_rounded,
             color: AppColors.textMuted,

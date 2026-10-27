@@ -91,28 +91,33 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Schedule',
-                        style: TextStyle(
-                          color: AppColors.textPrimary,
-                          fontSize: 22.sp,
-                          fontWeight: FontWeight.w800,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Schedule',
+                          style: TextStyle(
+                            color: AppColors.textPrimary,
+                            fontSize: 22.sp,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 2.h),
-                      Text(
-                        '${_dartWeekdays[DateTime.now().weekday - 1]}, ${_dartMonths[DateTime.now().month - 1]} ${DateTime.now().day}, ${DateTime.now().year}',
-                        style: TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 12.sp,
-                          fontWeight: FontWeight.w500,
+                        SizedBox(height: 2.h),
+                        Text(
+                          '${_dartWeekdays[DateTime.now().weekday - 1]}, ${_dartMonths[DateTime.now().month - 1]} ${DateTime.now().day}, ${DateTime.now().year}',
+                          style: TextStyle(
+                            color: AppColors.textSecondary,
+                            fontSize: 12.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
+                  SizedBox(width: 8.w),
                   GestureDetector(
                     onTap: () async {
                       _selectedDate = await showDatePicker(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:texafrost/core/constants/app_colors.dart';
 import 'package:texafrost/core/theme/app_decoration.dart';
@@ -13,6 +14,18 @@ class PhotoVideoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Future<void> capturePhoto() async {
+      await ImagePicker().pickImage(
+        source: ImageSource.camera,
+      );
+    }
+
+    Future<void> recordVideo() async {
+      await ImagePicker().pickVideo(
+        source: ImageSource.camera,
+      );
+    }
+
     return Scaffold(
       appBar: CustomAppBarBack(title: 'Photos & Videos'),
       body: Padding(
@@ -27,50 +40,56 @@ class PhotoVideoScreen extends StatelessWidget {
                 spacing: 16.w,
                 children: [
                   Expanded(
-                    child: Container(
-                      padding: .all(20.r),
-                      decoration: AppDecorations.container,
-                      child: Column(
-                        children: [
-                          Icon(
-                            Icons.camera_alt_outlined,
-                            size: 30.r,
-                            color: AppColors.labelText,
-                          ),
-                          SizedBox(height: 10.h),
-                          Text(
-                            'Take Photo',
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: .w600,
+                    child: InkWell(
+                      onTap: capturePhoto,
+                      child: Container(
+                        padding: .all(20.r),
+                        decoration: AppDecorations.container,
+                        child: Column(
+                          children: [
+                            Icon(
+                              Icons.camera_alt_outlined,
+                              size: 30.r,
                               color: AppColors.labelText,
                             ),
-                          ),
-                        ],
+                            SizedBox(height: 10.h),
+                            Text(
+                              'Take Photo',
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: .w600,
+                                color: AppColors.labelText,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
                   Expanded(
-                    child: Container(
-                      padding: .all(20.r),
-                      decoration: AppDecorations.container,
-                      child: Column(
-                        children: [
-                          Icon(
-                            Icons.videocam_outlined,
-                            size: 30.r,
-                            color: AppColors.labelText,
-                          ),
-                          SizedBox(height: 10.h),
-                          Text(
-                            'Record Video',
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: .w600,
+                    child: InkWell(
+                      onTap: recordVideo,
+                      child: Container(
+                        padding: .all(20.r),
+                        decoration: AppDecorations.container,
+                        child: Column(
+                          children: [
+                            Icon(
+                              Icons.videocam_outlined,
+                              size: 30.r,
                               color: AppColors.labelText,
                             ),
-                          ),
-                        ],
+                            SizedBox(height: 10.h),
+                            Text(
+                              'Record Video',
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: .w600,
+                                color: AppColors.labelText,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),

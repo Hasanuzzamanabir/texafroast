@@ -102,7 +102,10 @@ class _CustomerListScreenState extends State<CustomerListScreen> {
                     ),
                   ),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 10.w,
+                      vertical: 6.h,
+                    ),
                     decoration: BoxDecoration(
                       color: AppColors.orangeLight,
                       borderRadius: BorderRadius.circular(20.r),
@@ -162,9 +165,14 @@ class _CustomerListScreenState extends State<CustomerListScreen> {
                     onTap: () => setState(() => _selectedFilter = index),
                     child: Container(
                       margin: EdgeInsets.only(right: 8.w),
-                      padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 7.h),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 14.w,
+                        vertical: 7.h,
+                      ),
                       decoration: BoxDecoration(
-                        color: isSelected ? AppColors.orangeStart : AppColors.surface,
+                        color: isSelected
+                            ? AppColors.orangeStart
+                            : AppColors.surface,
                         borderRadius: BorderRadius.circular(20.r),
                         border: Border.all(
                           color: isSelected
@@ -175,9 +183,13 @@ class _CustomerListScreenState extends State<CustomerListScreen> {
                       child: Text(
                         _filters[index],
                         style: TextStyle(
-                          color: isSelected ? Colors.white : AppColors.textSecondary,
+                          color: isSelected
+                              ? Colors.white
+                              : AppColors.textSecondary,
                           fontSize: 12.sp,
-                          fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                          fontWeight: isSelected
+                              ? FontWeight.w700
+                              : FontWeight.w500,
                         ),
                       ),
                     ),
@@ -306,15 +318,20 @@ class _CustomerListScreenState extends State<CustomerListScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
-                                '${item['units']} Equipment Units Registered',
-                                style: TextStyle(
-                                  color: AppColors.textSecondary,
-                                  fontSize: 11.sp,
-                                  fontWeight: FontWeight.w500,
+                              Expanded(
+                                child: Text(
+                                  '${item['activeJobs']} Active Jobs',
+                                  style: TextStyle(
+                                    color: AppColors.textSecondary,
+                                    fontSize: 11.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                  overflow: TextOverflow.ellipsis,
                                 ),
                               ),
+                              SizedBox(width: 8.w),
                               Row(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
                                   IconButton(
                                     onPressed: () {},
@@ -322,8 +339,8 @@ class _CustomerListScreenState extends State<CustomerListScreen> {
                                     color: AppColors.orangeStart,
                                     iconSize: 18.sp,
                                     padding: EdgeInsets.zero,
-                                    constraints: const BoxConstraints(),
                                   ),
+
                                   SizedBox(width: 14.w),
                                   Icon(
                                     Icons.arrow_forward_ios_rounded,

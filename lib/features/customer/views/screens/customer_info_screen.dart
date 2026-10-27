@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:texafrost/core/widgets/custom_app_bar_back.dart';
+import 'package:texafrost/routes/app_routes.dart';
 import '../../../../core/constants/app_colors.dart';
-import '../../../../core/widgets/custom_bottom_nav_bar.dart';
 
 class CustomerInfoScreen extends StatelessWidget {
   const CustomerInfoScreen({super.key});
@@ -28,10 +28,10 @@ class CustomerInfoScreen extends StatelessWidget {
                       width: double.infinity,
                       padding: EdgeInsets.all(16.w),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF131418),
+                        color: AppColors.surface,
                         borderRadius: BorderRadius.circular(16.r),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.06),
+                          color: AppColors.lightGrayBorder,
                           width: 1,
                         ),
                       ),
@@ -97,10 +97,10 @@ class CustomerInfoScreen extends StatelessWidget {
                       width: double.infinity,
                       padding: EdgeInsets.all(16.w),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF131418),
+                        color: AppColors.surface,
                         borderRadius: BorderRadius.circular(16.r),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.06),
+                          color: AppColors.lightGrayBorder,
                           width: 1,
                         ),
                       ),
@@ -127,112 +127,100 @@ class CustomerInfoScreen extends StatelessWidget {
                     SizedBox(height: 18.h),
 
                     // Service Address[cite: 20]
-                    _buildSectionHeader('SERVICE ADDRESS'),
+                    _buildSectionHeader('SERVICES'),
                     Container(
                       width: double.infinity,
                       padding: EdgeInsets.all(16.w),
                       decoration: BoxDecoration(
-                        color: const Color(0xFF131418),
+                        color: AppColors.surface,
                         borderRadius: BorderRadius.circular(16.r),
                         border: Border.all(
-                          color: Colors.white.withOpacity(0.06),
+                          color: AppColors.lightGrayBorder,
                           width: 1,
                         ),
                       ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '2847 Commerce Blvd, Suite 400',
-                            style: TextStyle(
-                              color: AppColors.textPrimary,
-                              fontSize: 15.sp,
-                              fontWeight: FontWeight.w700,
-                            ),
+                      child: ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) => InkWell(
+                          onTap: () => Navigator.pushNamed(
+                            context,
+                            AppRoutes.jobDetails,
                           ),
-                          SizedBox(height: 2.h),
-                          Text(
-                            'Houston, TX 77002',
-                            style: TextStyle(
-                              color: AppColors.textSecondary,
-                              fontSize: 13.sp,
-                            ),
-                          ),
-                          SizedBox(height: 14.h),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal: 16.w,
-                                vertical: 10.h,
-                              ),
-                              decoration: BoxDecoration(
-                                color: const Color(0xFF281810),
-                                borderRadius: BorderRadius.circular(10.r),
-                                border: Border.all(
-                                  color: AppColors.orangeStart.withOpacity(0.4),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 4.w,
+                                  vertical: 2.h,
                                 ),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(
-                                    Icons.near_me_outlined,
-                                    size: 16.sp,
+                                decoration: BoxDecoration(
+                                  color: AppColors.surface,
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  border: Border.all(
                                     color: AppColors.orangeStart,
                                   ),
-                                  SizedBox(width: 8.w),
-                                  Text(
-                                    'Navigate to Location',
-                                    style: TextStyle(
-                                      color: AppColors.orangeStart,
-                                      fontSize: 13.sp,
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                ),
+                                child: Text(
+                                  'Assigned',
+                                  style: TextStyle(
+                                    fontSize: 10.sp,
+                                    color: AppColors.orangeStart,
                                   ),
-                                ],
+                                ),
                               ),
-                            ),
+                              SizedBox(height: 4.h),
+                              Text(
+                                '2847 Commerce Blvd, Suite 400',
+                                style: TextStyle(
+                                  color: AppColors.textPrimary,
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+
+                              SizedBox(height: 2.h),
+                              Text(
+                                'Fix the exhaust fan',
+                                style: TextStyle(
+                                  color: AppColors.textSecondary,
+                                  fontSize: 12.sp,
+                                ),
+                              ),
+                              Text(
+                                'Job #J100342',
+                                style: TextStyle(
+                                  color: AppColors.textSecondary,
+                                  fontSize: 12.sp,
+                                ),
+                              ),
+                              Text(
+                                '14 days ago',
+                                style: TextStyle(
+                                  color: AppColors.textSecondary,
+                                  fontSize: 12.sp,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
+                        separatorBuilder: (context, index) => Padding(
+                          padding: EdgeInsets.symmetric(vertical: 4.h),
+                          child: Divider(),
+                        ),
+                        itemCount: 2,
                       ),
                     ),
                     SizedBox(height: 18.h),
 
                     // Special Instructions[cite: 20]
-                    _buildSectionHeader('SPECIAL INSTRUCTIONS'),
-                    Container(
-                      width: double.infinity,
-                      padding: EdgeInsets.all(16.w),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFF131418),
-                        borderRadius: BorderRadius.circular(16.r),
-                        border: Border.all(
-                          color: Colors.white.withOpacity(0.06),
-                          width: 1,
-                        ),
-                      ),
-                      child: Text(
-                        'Access key stored in lockbox #3 near east stairwell. Contact facilities manager Marcus Webb on arrival.',
-                        style: TextStyle(
-                          color: AppColors.textSecondary,
-                          fontSize: 13.sp,
-                          height: 1.4,
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 20.h),
                   ],
                 ),
               ),
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: CustomBottomNavBar(
-        currentIndex: 1,
-        jobsBadgeCount: 3,
-        onTap: (index) => Navigator.pop(context),
       ),
     );
   }
@@ -262,10 +250,7 @@ class CustomerInfoScreen extends StatelessWidget {
           children: [
             Text(
               label,
-              style: TextStyle(
-                color: const Color(0xFF6B7280),
-                fontSize: 11.sp,
-              ),
+              style: TextStyle(color: const Color(0xFF6B7280), fontSize: 11.sp),
             ),
             SizedBox(height: 2.h),
             Text(

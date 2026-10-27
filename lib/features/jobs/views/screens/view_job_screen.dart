@@ -23,7 +23,7 @@ class ViewJobScreen extends StatelessWidget {
                 width: .maxFinite,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12.r),
-                  border: Border.all(color: AppColors.blueGlow, width: 1),
+                  border: Border.all(color: AppColors.orangeBorder, width: 1),
                 ),
                 child: Column(
                   children: [
@@ -50,7 +50,7 @@ class ViewJobScreen extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 13.sp,
                               fontWeight: FontWeight.w600,
-                              color: AppColors.blueGlow,
+                              color: AppColors.orangeStart,
                             ),
                           ),
                           Text(

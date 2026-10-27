@@ -15,11 +15,11 @@ class PendingChangeTile extends StatelessWidget {
 
     switch (item.status) {
       case SyncItemStatus.completed:
-        iconBgColor = const Color(0xFF14532D).withOpacity(0.5);
+        iconBgColor = const Color(0xFF14532D);
         iconColor = const Color(0xFF22C55E);
         break;
       case SyncItemStatus.failed:
-        iconBgColor = const Color(0xFF7C2D12).withOpacity(0.5);
+        iconBgColor = const Color(0xFF7C2D12);
         iconColor = const Color(0xFFF97316);
         break;
       case SyncItemStatus.pending:

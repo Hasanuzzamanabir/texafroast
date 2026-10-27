@@ -20,9 +20,9 @@ class ProfileTabBar extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(4.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF131418),
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(color: Colors.white.withOpacity(0.06), width: 1),
+        border: Border.all(color: AppColors.cardBorder, width: 1),
       ),
       child: Row(
         children: List.generate(tabs.length, (index) {
@@ -33,16 +33,22 @@ class ProfileTabBar extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 8.h),
                 decoration: BoxDecoration(
-                  color: isSelected ? AppColors.orangeStart : Colors.transparent,
+                  color: isSelected
+                      ? AppColors.orangeStart
+                      : Colors.transparent,
                   borderRadius: BorderRadius.circular(8.r),
                 ),
                 child: Center(
                   child: Text(
                     tabs[index],
                     style: TextStyle(
-                      color: isSelected ? Colors.white : const Color(0xFF71717A),
+                      color: isSelected
+                          ? Colors.white
+                          : const Color(0xFF71717A),
                       fontSize: 13.sp,
-                      fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                      fontWeight: isSelected
+                          ? FontWeight.w700
+                          : FontWeight.w500,
                     ),
                   ),
                 ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import '../constants/app_colors.dart';
-import '../../features/dashboard/models/dashboard_summary_model.dart';
+import '../../features/dashboard/view_models/dashboard_summary_view_model.dart';
 
 class SyncStatusBar extends StatelessWidget {
   const SyncStatusBar({super.key});
@@ -21,7 +21,9 @@ class SyncStatusBar extends StatelessWidget {
         color: hasPending ? AppColors.orangeLight : AppColors.surface,
         border: Border(
           bottom: BorderSide(
-            color: hasPending ? AppColors.orangeBorder : AppColors.lightGrayBorder,
+            color: hasPending
+                ? AppColors.orangeBorder
+                : AppColors.lightGrayBorder,
             width: 1,
           ),
         ),
@@ -44,10 +46,12 @@ class SyncStatusBar extends StatelessWidget {
               isSyncing
                   ? 'Syncing offline changes...'
                   : (hasPending
-                      ? '$pendingCount pending items to upload'
-                      : 'Sync Status: Up to date (${provider.lastSyncedTime})'),
+                        ? '$pendingCount pending items to upload'
+                        : 'Sync Status: Up to date (${provider.lastSyncedTime})'),
               style: TextStyle(
-                color: hasPending ? AppColors.orangeEnd : AppColors.textSecondary,
+                color: hasPending
+                    ? AppColors.orangeEnd
+                    : AppColors.textSecondary,
                 fontSize: 11.5.sp,
                 fontWeight: FontWeight.w600,
               ),
@@ -69,10 +73,14 @@ class SyncStatusBar extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                 decoration: BoxDecoration(
-                  color: hasPending ? AppColors.orangeStart : AppColors.surfaceLight,
+                  color: hasPending
+                      ? AppColors.orangeStart
+                      : AppColors.surfaceLight,
                   borderRadius: BorderRadius.circular(6.r),
                   border: Border.all(
-                    color: hasPending ? AppColors.orangeStart : AppColors.lightGrayBorder,
+                    color: hasPending
+                        ? AppColors.orangeStart
+                        : AppColors.lightGrayBorder,
                   ),
                 ),
                 child: Row(
@@ -87,7 +95,9 @@ class SyncStatusBar extends StatelessWidget {
                     Text(
                       hasPending ? 'Retry' : 'Sync Now',
                       style: TextStyle(
-                        color: hasPending ? Colors.white : AppColors.textPrimary,
+                        color: hasPending
+                            ? Colors.white
+                            : AppColors.textPrimary,
                         fontSize: 11.sp,
                         fontWeight: FontWeight.w700,
                       ),

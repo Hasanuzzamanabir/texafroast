@@ -44,52 +44,64 @@ class ScheduleJobCardWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 if (slot.status != null)
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 7.w,
-                      vertical: 3.h,
-                    ),
-                    decoration: BoxDecoration(
-                      color: isInProgress
-                          ? AppColors.orangeStart
-                          : AppColors.surfaceLight,
-                      borderRadius: BorderRadius.circular(6.r),
-                      border: Border.all(
+                  Flexible(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 5.w,
+                        vertical: 2.h,
+                      ),
+                      decoration: BoxDecoration(
                         color: isInProgress
                             ? AppColors.orangeStart
-                            : AppColors.lightGrayBorder,
+                            : AppColors.surfaceLight,
+                        borderRadius: BorderRadius.circular(4.r),
+                        border: Border.all(
+                          color: isInProgress
+                              ? AppColors.orangeStart
+                              : AppColors.lightGrayBorder,
+                        ),
                       ),
-                    ),
-                    child: Text(
-                      slot.status!,
-                      style: TextStyle(
-                        color: isInProgress
-                            ? Colors.white
-                            : AppColors.textSecondary,
-                        fontSize: 9.5.sp,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: 0.5,
+                      child: Text(
+                        slot.status!,
+                        style: TextStyle(
+                          color: isInProgress
+                              ? Colors.white
+                              : AppColors.textSecondary,
+                          fontSize: 9.sp,
+                          fontWeight: FontWeight.w800,
+                          letterSpacing: 0.5,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
                   ),
+                SizedBox(width: 4.w),
                 if (slot.arrivalWindow != null)
-                  Wrap(
-                    children: [
-                      Icon(
-                        Icons.access_time_filled_rounded,
-                        size: 12.sp,
-                        color: AppColors.orangeEnd,
-                      ),
-                      SizedBox(width: 4.w),
-                      Text(
-                        slot.arrivalWindow!,
-                        style: TextStyle(
+                  Flexible(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(
+                          Icons.access_time_filled_rounded,
+                          size: 11.sp,
                           color: AppColors.orangeEnd,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w700,
                         ),
-                      ),
-                    ],
+                        SizedBox(width: 3.w),
+                        Flexible(
+                          child: Text(
+                            slot.arrivalWindow!,
+                            style: TextStyle(
+                              color: AppColors.orangeEnd,
+                              fontSize: 10.sp,
+                              fontWeight: FontWeight.w700,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
               ],
             ),
@@ -139,9 +151,14 @@ class ScheduleJobCardWidget extends StatelessWidget {
 
             // Bottom Row: Assigned Tech & Service Tag
             Wrap(
+              spacing: 8.w,
+              runSpacing: 4.h,
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
               children: [
                 if (slot.assignedTechnician != null)
                   Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(
                         Icons.person_outline_rounded,
@@ -149,12 +166,17 @@ class ScheduleJobCardWidget extends StatelessWidget {
                         color: AppColors.textSecondary,
                       ),
                       SizedBox(width: 4.w),
-                      Text(
-                        slot.assignedTechnician!,
-                        style: TextStyle(
-                          color: AppColors.textPrimary,
-                          fontSize: 11.sp,
-                          fontWeight: FontWeight.w600,
+                      ConstrainedBox(
+                        constraints: BoxConstraints(maxWidth: 100.w),
+                        child: Text(
+                          slot.assignedTechnician!,
+                          style: TextStyle(
+                            color: AppColors.textPrimary,
+                            fontSize: 10.5.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],

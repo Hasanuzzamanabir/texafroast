@@ -7,7 +7,7 @@ import '../../../../core/constants/imagepath.dart';
 import '../../../../core/widgets/offline_status_bar.dart';
 import '../../../../core/widgets/secondary_menu_sheet.dart';
 import '../../../../routes/app_routes.dart';
-import '../../models/dashboard_summary_model.dart';
+import '../../view_models/dashboard_summary_view_model.dart';
 import '../widgets/job_card_widget.dart';
 
 class DashboardHomeView extends StatelessWidget {
@@ -120,7 +120,117 @@ class DashboardHomeView extends StatelessWidget {
                   // // A. Technician Time Tracking Card (Clock In / Clock Out)
                   // _buildTimeTrackingCard(context, provider),
                   // SizedBox(height: 14.h),
-
+                  Row(
+                    spacing: 10.w,
+                    children: [
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 24.h,
+                            horizontal: 16.w,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColors.surface,
+                            borderRadius: BorderRadius.circular(16.r),
+                            border: Border.all(
+                              color: AppColors.lightGrayBorder,
+                              width: 1,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Assigned',
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  color: AppColors.labelText,
+                                ),
+                              ),
+                              Text(
+                                '5',
+                                style: TextStyle(
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.w800,
+                                  color: AppColors.textPrimary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 24.h,
+                            horizontal: 16.w,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColors.surface,
+                            borderRadius: BorderRadius.circular(16.r),
+                            border: Border.all(
+                              color: AppColors.orangeBorder,
+                              width: 1,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                'In Progress',
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  color: AppColors.labelText,
+                                ),
+                              ),
+                              Text(
+                                '5',
+                                style: TextStyle(
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.w800,
+                                  color: AppColors.orangeStart,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 24.h,
+                            horizontal: 16.w,
+                          ),
+                          decoration: BoxDecoration(
+                            color: AppColors.surface,
+                            borderRadius: BorderRadius.circular(16.r),
+                            border: Border.all(
+                              color: AppColors.lightGrayBorder,
+                              width: 1,
+                            ),
+                          ),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Completed',
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  color: AppColors.labelText,
+                                ),
+                              ),
+                              Text(
+                                '5',
+                                style: TextStyle(
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.w800,
+                                  color: AppColors.textPrimary,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 12.h),
                   // B. "Needs Attention" Field Alert Section
                   _buildNeedsAttentionSection(context),
                   SizedBox(height: 14.h),
@@ -133,12 +243,14 @@ class DashboardHomeView extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Today's Schedule",
-                        style: TextStyle(
-                          color: AppColors.textPrimary,
-                          fontSize: 17.sp,
-                          fontWeight: FontWeight.w800,
+                      Expanded(
+                        child: Text(
+                          "Today's Schedule",
+                          style: TextStyle(
+                            color: AppColors.textPrimary,
+                            fontSize: 17.sp,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ),
                       TextButton(
@@ -401,22 +513,27 @@ class DashboardHomeView extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
-                decoration: BoxDecoration(
-                  color: AppColors.orangeStart,
-                  borderRadius: BorderRadius.circular(6.r),
-                ),
-                child: Text(
-                  'CURRENT ACTIVE JOB',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 10.sp,
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: 0.5,
+              Flexible(
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+                  decoration: BoxDecoration(
+                    color: AppColors.orangeStart,
+                    borderRadius: BorderRadius.circular(6.r),
+                  ),
+                  child: Text(
+                    'CURRENT ACTIVE JOB',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10.sp,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 0.5,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ),
+              SizedBox(width: 8.w),
               Text(
                 'Started 8:30 AM',
                 style: TextStyle(
@@ -463,7 +580,7 @@ class DashboardHomeView extends StatelessWidget {
               Expanded(
                 child: ElevatedButton.icon(
                   onPressed: () {
-                    Navigator.pushNamed(context, AppRoutes.trackingProgress);
+                    Navigator.pushNamed(context, AppRoutes.arrivedJob);
                   },
                   icon: const Icon(
                     Icons.play_arrow_rounded,

@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:texafrost/core/constants/app_colors.dart';
 import 'package:texafrost/features/profile/models/profile_model.dart';
 
-
 class ProfileHeaderCard extends StatelessWidget {
   final TechnicianProfileModel profile;
 
@@ -15,9 +14,9 @@ class ProfileHeaderCard extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
-        color: const Color(0xFF131418),
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: Colors.white.withOpacity(0.06), width: 1),
+        border: Border.all(color: AppColors.cardBorder, width: 1),
       ),
       child: Column(
         children: [
@@ -52,7 +51,10 @@ class ProfileHeaderCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         color: const Color(0xFF22C55E),
                         shape: BoxShape.circle,
-                        border: Border.all(color: const Color(0xFF131418), width: 2),
+                        border: Border.all(
+                          color: const Color(0xFF131418),
+                          width: 2,
+                        ),
                       ),
                     ),
                   ),
@@ -99,7 +101,7 @@ class ProfileHeaderCard extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF14532D).withOpacity(0.4),
+                  color: AppColors.skipButtonBg,
                   borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Row(
@@ -130,7 +132,7 @@ class ProfileHeaderCard extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF281810),
+                  color: AppColors.skipButtonBg,
                   borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Text(
