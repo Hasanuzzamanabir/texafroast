@@ -11,16 +11,12 @@ class CustomerInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: SafeArea(
+      appBar: const CustomAppBarBack(title: 'Customer Info'),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CustomAppBarBack(title: 'Customer Info'),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
                     SizedBox(height: 10.h),
 
                     // Top Avatar & Title[cite: 20]
@@ -218,10 +214,6 @@ class CustomerInfoScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 

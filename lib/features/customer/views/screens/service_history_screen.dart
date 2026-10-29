@@ -41,16 +41,12 @@ class ServiceHistoryScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: SafeArea(
+      appBar: const CustomAppBarBack(title: 'Service History'),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
           children: [
-            const CustomAppBarBack(title: 'Service History'),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Column(
-                  children: [
-                    SizedBox(height: 10.h),
+            SizedBox(height: 10.h),
 
                     // Top Summary Cards (12 Visits / 4.9 Rating)[cite: 18]
                     Row(
@@ -142,10 +138,6 @@ class ServiceHistoryScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 

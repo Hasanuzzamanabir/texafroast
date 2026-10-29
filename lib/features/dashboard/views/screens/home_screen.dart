@@ -154,7 +154,7 @@ class _JobsView extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'My Jobs',
+                              'Today\'s Jobs',
                               style: TextStyle(
                                 color: AppColors.textPrimary,
                                 fontSize: 24.sp,

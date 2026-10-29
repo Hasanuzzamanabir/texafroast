@@ -10,16 +10,12 @@ class EquipmentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background,
-      body: SafeArea(
+      appBar: const CustomAppBarBack(title: 'Equipment'),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const CustomAppBarBack(title: 'Equipment'),
-            Expanded(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
                     SizedBox(height: 10.h),
 
                     // Primary Unit Header[cite: 19]
@@ -131,10 +127,6 @@ class EquipmentScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 

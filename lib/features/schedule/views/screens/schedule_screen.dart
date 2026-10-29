@@ -38,43 +38,14 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
     'November',
     'December',
   ];
-  final List<Map<String, dynamic>> _calendarDays = [
-    {
-      'day': '${DateTime.now().add(const Duration(days: -2)).weekday}',
-      'date': '${DateTime.now().day - 2}',
-      'month': 'Sep',
-    },
-    {
-      'day': '${DateTime.now().add(const Duration(days: -1)).weekday}',
-      'date': '${DateTime.now().day - 1}',
-      'month': 'Sep',
-    },
-    {
-      'day': '${DateTime.now().add(const Duration(days: 0)).weekday}',
-      'date': '${DateTime.now().day}',
-      'month': 'Sep',
-    },
-    {
-      'day': '${DateTime.now().add(const Duration(days: 1)).weekday}',
-      'date': '${DateTime.now().day + 1}',
-      'month': 'Sep',
-    },
-    {
-      'day': '${DateTime.now().add(const Duration(days: 2)).weekday}',
-      'date': '${DateTime.now().day + 2}',
-      'month': 'Sep',
-    },
-    {
-      'day': '${DateTime.now().add(const Duration(days: 3)).weekday}',
-      'date': '${DateTime.now().day + 3}',
-      'month': 'Sep',
-    },
-    {
-      'day': '${DateTime.now().add(const Duration(days: 4)).weekday}',
-      'date': '${DateTime.now().day + 4}',
-      'month': 'Sep',
-    },
-  ];
+  List<Map<String, dynamic>> get _calendarDays => List.generate(7, (index) {
+        final date = DateTime.now().add(Duration(days: index - 2));
+        return {
+          'day': '${date.weekday}',
+          'date': '${date.day}',
+          'month': _dartMonths[date.month - 1].substring(0, 3),
+        };
+      });
   DateTime? _selectedDate;
   @override
   Widget build(BuildContext context) {
@@ -104,15 +75,23 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                           ),
                         ),
                         SizedBox(height: 2.h),
-                        Text(
-                          '${_dartWeekdays[DateTime.now().weekday - 1]}, ${_dartMonths[DateTime.now().month - 1]} ${DateTime.now().day}, ${DateTime.now().year}',
-                          style: TextStyle(
-                            color: AppColors.textSecondary,
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w500,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                        Builder(
+                          builder: (context) {
+                            final activeDate = _selectedDate ??
+                                DateTime.now().add(
+                                  Duration(days: scheduleProvider.selectedDateIndex - 2),
+                                );
+                            return Text(
+                              '${_dartWeekdays[activeDate.weekday - 1]}, ${_dartMonths[activeDate.month - 1]} ${activeDate.day}, ${activeDate.year}',
+                              style: TextStyle(
+                                color: AppColors.textSecondary,
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -120,14 +99,17 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                   SizedBox(width: 8.w),
                   GestureDetector(
                     onTap: () async {
-                      _selectedDate = await showDatePicker(
+                      final picked = await showDatePicker(
                         barrierColor: AppColors.orangeStart.withValues(
                           alpha: 0.05,
                         ),
                         context: context,
-                        firstDate: DateTime.now(),
+                        firstDate: DateTime.now().subtract(const Duration(days: 365)),
                         lastDate: DateTime(2100),
-                        initialDate: DateTime.now(),
+                        initialDate: _selectedDate ??
+                            DateTime.now().add(
+                              Duration(days: scheduleProvider.selectedDateIndex - 2),
+                            ),
                         builder: (context, child) {
                           return Theme(
                             data: Theme.of(context).copyWith(
@@ -180,7 +162,11 @@ class _ScheduleScreenState extends State<ScheduleScreen> {
                           );
                         },
                       );
-                      setState(() {});
+                      if (picked != null) {
+                        setState(() {
+                          _selectedDate = picked;
+                        });
+                      }
                     },
                     child: Container(
                       padding: EdgeInsets.all(8.w),

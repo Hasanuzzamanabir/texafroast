@@ -4,7 +4,6 @@ import 'package:texafrost/features/auth/views/screens/login_screen.dart';
 import 'package:texafrost/features/customer/views/screens/customer_info_screen.dart';
 import 'package:texafrost/features/dashboard/views/screens/home_screen.dart';
 import 'package:texafrost/features/customer/views/screens/equipment_screen.dart';
-import 'package:texafrost/features/customer/views/screens/job_detail_screen.dart';
 import 'package:texafrost/features/customer/views/screens/service_history_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/arrived_job_screen.dart';
 import 'package:texafrost/features/jobs/views/screens/tracking_progress_screen.dart';
@@ -90,16 +89,18 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case syncDetails:
         return MaterialPageRoute(builder: (_) => const SyncDetailsScreen());
-      case jobDetails:
-        return MaterialPageRoute(builder: (_) => const JobDetailScreen());
       case customerInfo:
         return MaterialPageRoute(builder: (_) => const CustomerInfoScreen());
       case equipment:
         return MaterialPageRoute(builder: (_) => const EquipmentScreen());
       case serviceHistory:
         return MaterialPageRoute(builder: (_) => const ServiceHistoryScreen());
+      case jobDetails:
       case viewJob:
-        return MaterialPageRoute(builder: (_) => const ViewJobScreen());
+        final jobId = settings.arguments as String?;
+        return MaterialPageRoute(
+          builder: (_) => ViewJobScreen(jobID: jobId),
+        );
       case arrivedJob:
         return MaterialPageRoute(builder: (_) => const ArrivedJobScreen());
       case trackingProgress:

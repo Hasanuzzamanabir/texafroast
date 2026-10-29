@@ -340,6 +340,17 @@ class _CustomerListScreenState extends State<CustomerListScreen> {
                                     iconSize: 18.sp,
                                     padding: EdgeInsets.zero,
                                   ),
+                                  IconButton(
+                                    onPressed: () => _showChatDetail(
+                                      context,
+                                      item['name'],
+                                      item['address'],
+                                    ),
+                                    icon: const Icon(Icons.message),
+                                    color: AppColors.orangeStart,
+                                    iconSize: 18.sp,
+                                    padding: EdgeInsets.zero,
+                                  ),
 
                                   SizedBox(width: 14.w),
                                   Icon(
@@ -363,4 +374,115 @@ class _CustomerListScreenState extends State<CustomerListScreen> {
       ),
     );
   }
+}
+
+void _showChatDetail(BuildContext context, String sender, String lastMessage) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent,
+    builder: (_) => Container(
+      height: 0.75.sh,
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+      decoration: BoxDecoration(
+        color: AppColors.surface,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+      ),
+      child: Column(
+        children: [
+          Container(
+            width: 36.w,
+            height: 4.h,
+            decoration: BoxDecoration(
+              color: AppColors.lightGrayBorder,
+              borderRadius: BorderRadius.circular(2.r),
+            ),
+          ),
+          SizedBox(height: 12.h),
+          Row(
+            children: [
+              CircleAvatar(
+                radius: 18.r,
+                backgroundColor: AppColors.orangeStart,
+                child: Text(
+                  sender.substring(0, 1),
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+              SizedBox(width: 10.w),
+              Expanded(
+                child: Text(
+                  sender,
+                  style: TextStyle(
+                    color: AppColors.textPrimary,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ),
+              IconButton(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.close_rounded),
+              ),
+            ],
+          ),
+          const Divider(),
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.symmetric(vertical: 8.h),
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    padding: EdgeInsets.all(12.w),
+                    decoration: BoxDecoration(
+                      color: AppColors.surfaceLight,
+                      borderRadius: BorderRadius.circular(12.r),
+                    ),
+                    child: Text(
+                      lastMessage,
+                      style: TextStyle(
+                        color: AppColors.textPrimary,
+                        fontSize: 13.sp,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.symmetric(horizontal: 12.w),
+            decoration: BoxDecoration(
+              color: AppColors.surfaceLight,
+              borderRadius: BorderRadius.circular(24.r),
+              border: Border.all(color: AppColors.lightGrayBorder),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Type message...',
+                      hintStyle: TextStyle(
+                        color: AppColors.inputHint,
+                        fontSize: 13.sp,
+                      ),
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+                IconButton(
+                  onPressed: () {},
+                  icon: const Icon(Icons.send_rounded),
+                  color: AppColors.orangeStart,
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 12.h),
+        ],
+      ),
+    ),
+  );
 }
