@@ -177,15 +177,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 onTap: () async {
                   if (authProvider.isLoading) return;
                   final success = await context.read<AuthProvider>().login(
-                        _emailController.text,
-                        _passwordController.text,
-                      );
-                if (success && context.mounted) {
-  Navigator.pushReplacementNamed(
-    context,
-    AppRoutes.home,
-  );
-}
+                    _emailController.text,
+                    _passwordController.text,
+                  );
+                  if (success && context.mounted) {
+                    Navigator.pushReplacementNamed(context, AppRoutes.home);
+                  }
                 },
               ),
               SizedBox(height: 24.h),
@@ -194,10 +191,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Row(
                 children: [
                   const Expanded(
-                    child: Divider(
-                      color: AppColors.inputBorder,
-                      thickness: 1,
-                    ),
+                    child: Divider(color: AppColors.inputBorder, thickness: 1),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12.w),
@@ -210,16 +204,35 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   const Expanded(
-                    child: Divider(
-                      color: AppColors.inputBorder,
-                      thickness: 1,
-                    ),
+                    child: Divider(color: AppColors.inputBorder, thickness: 1),
                   ),
                 ],
               ),
               SizedBox(height: 24.h),
 
-           
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, AppRoutes.pin);
+                },
+                child: Container(
+                  padding: .all(16.r),
+                  decoration: BoxDecoration(
+                    border: .all(color: AppColors.inputBorder),
+                    borderRadius: .circular(16.r),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: .center,
+                    children: [
+                      Icon(Icons.pin_outlined, size: 22.r),
+                      SizedBox(width: 10.w),
+                      Text(
+                        'Sign in with PIN',
+                        style: TextStyle(fontSize: 15.sp, fontWeight: .w600),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
 
               SizedBox(height: 48.h),
 

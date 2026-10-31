@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:texafrost/features/auth/views/screens/forget_password_screen.dart';
 import 'package:texafrost/features/auth/views/screens/login_screen.dart';
+import 'package:texafrost/features/auth/views/screens/pin_screen.dart';
 import 'package:texafrost/features/customer/views/screens/customer_info_screen.dart';
 import 'package:texafrost/features/dashboard/views/screens/home_screen.dart';
 import 'package:texafrost/features/customer/views/screens/equipment_screen.dart';
@@ -70,6 +71,7 @@ class AppRoutes {
   static const String profile = '/profile';
   static const String jobReport = '/job-report';
   static const String jobComplete = '/job-complete';
+  static const String pin = '/pin';
 
   // Route Generator
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
@@ -98,9 +100,7 @@ class AppRoutes {
       case jobDetails:
       case viewJob:
         final jobId = settings.arguments as String?;
-        return MaterialPageRoute(
-          builder: (_) => ViewJobScreen(jobID: jobId),
-        );
+        return MaterialPageRoute(builder: (_) => ViewJobScreen(jobID: jobId));
       case arrivedJob:
         return MaterialPageRoute(builder: (_) => const ArrivedJobScreen());
       case trackingProgress:
@@ -131,6 +131,8 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const JobReportScreen());
       case jobComplete:
         return MaterialPageRoute(builder: (_) => const JobCompletePageScreen());
+      case pin:
+        return MaterialPageRoute(builder: (_) => const PinScreen());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
